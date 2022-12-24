@@ -5,6 +5,7 @@ web/
 windows/
 ios/
 .fvm/
+pubspec.lock
 
 # Miscellaneous
 *.class
