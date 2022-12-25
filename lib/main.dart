@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:krishi_gyan/recommendation.dart';
+import 'package:krishi_gyan/screens/recommendation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'home_page.dart';
-import 'landing_page.dart';
-import 'mandi.dart';
-import './bottom_navigation.dart';
+import 'screens/home_page.dart';
+import 'screens/landing_page.dart';
+import 'screens/mandi.dart';
+import 'widgets/bottom_navigation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

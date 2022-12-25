@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:krishi_gyan/bottom_navigation.dart';
-import 'package:krishi_gyan/landing_page.dart';
-import 'package:krishi_gyan/mandi.dart';
+import 'package:krishi_gyan/widgets/bottom_navigation.dart';
+import 'package:krishi_gyan/screens/landing_page.dart';
+import 'package:krishi_gyan/screens/mandi.dart';
 
 class HomePage extends StatelessWidget {
   @override

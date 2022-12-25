@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krishi_gyan/home_page.dart';
+import 'package:krishi_gyan/screens/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LandingPage extends StatefulWidget {

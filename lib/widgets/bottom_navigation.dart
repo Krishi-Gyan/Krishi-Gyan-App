@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:krishi_gyan/recommendation.dart';
+import 'package:krishi_gyan/screens/recommendation.dart';
 
-import 'account_page.dart';
-import 'mandi.dart';
+import '../screens/account_page.dart';
+import '../screens/mandi.dart';
 
 class BNB extends StatefulWidget {
   const BNB({Key? key}) : super(key: key);
