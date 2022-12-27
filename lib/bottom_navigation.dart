@@ -24,11 +24,12 @@ class _BNBState extends State<BNB> {
     return Scaffold(
       body: children[selectedItem],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 27, 26, 26),
+        backgroundColor: Colors.white,
         iconSize: 25,
         currentIndex: selectedItem,
         unselectedLabelStyle: const TextStyle(color: Colors.green),
-        unselectedItemColor: Colors.white,
+        unselectedItemColor: const Color.fromARGB(255, 84, 84, 84),
+        selectedItemColor: const Color.fromARGB(255, 45, 114, 83),
         onTap: (currIndex) {
           setState(() {
             selectedItem = currIndex;
@@ -36,22 +37,22 @@ class _BNBState extends State<BNB> {
         },
         items: const [
           BottomNavigationBarItem(
-            backgroundColor: Color.fromARGB(255, 27, 26, 26),
-            icon: Icon(Icons.home),
-            label: 'Home',
+            backgroundColor:Colors.white,
+            icon: Icon(Icons.assignment_sharp),
+            label: 'Krishi Gyan',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromARGB(255, 27, 26, 26),
-            icon: Icon(Icons.search),
-            label: 'Krishi gyan',
+            backgroundColor: Colors.white,
+            icon: Icon(Icons.info_outline),
+            label:'Recommendation',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromARGB(255, 27, 26, 26),
-            icon: Icon(Icons.shop),
+            backgroundColor: Colors.white,
+            icon: Icon(Icons.shopping_bag_outlined),
             label: 'Mandi',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color.fromARGB(255, 27, 26, 26),
+            backgroundColor: Colors.white,
             icon: Icon(Icons.person),
             label: 'Account',
           ),
