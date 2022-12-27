@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:krishi_gyan/cards.dart';
+import 'package:krishi_gyan/widgets/cards.dart';
 
 enum WidgetMake { buy, sell }
 

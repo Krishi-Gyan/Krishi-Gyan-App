@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import './recommendation.dart';
+import 'screens/recommendation.dart';
 
-import 'home_page.dart';
-import 'landing_page.dart';
-import 'mandi.dart';
+import 'screens/home_page.dart';
+import 'screens/landing_page.dart';
+import 'screens/mandi.dart';
 import './bottom_navigation.dart';
 
 void main() async {
