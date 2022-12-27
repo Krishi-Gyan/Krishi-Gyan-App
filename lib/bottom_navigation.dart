@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:krishi_gyan/screens/recommendation.dart';
+import 'package:krishi_gyan/widgets/recommendation.dart';
+import 'package:krishi_gyan/screens/recom_screen.dart';
 
 import 'screens/account_page.dart';
 import 'screens/mandi.dart';
@@ -15,7 +16,7 @@ class _BNBState extends State<BNB> {
   var selectedItem = 0;
   List children = [
     const Mandi(),
-    Recommendation(),
+    const RecomScreen(),
     const Mandi(),
     const AccountPage(),
   ];
@@ -37,14 +38,14 @@ class _BNBState extends State<BNB> {
         },
         items: const [
           BottomNavigationBarItem(
-            backgroundColor:Colors.white,
+            backgroundColor: Colors.white,
             icon: Icon(Icons.assignment_sharp),
             label: 'Krishi Gyan',
           ),
           BottomNavigationBarItem(
             backgroundColor: Colors.white,
             icon: Icon(Icons.info_outline),
-            label:'Recommendation',
+            label: 'Recommendation',
           ),
           BottomNavigationBarItem(
             backgroundColor: Colors.white,

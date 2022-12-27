@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/recommendation.dart';
+import 'package:krishi_gyan/screens/recom_screen.dart';
+import 'widgets/recommendation.dart';
 
 import 'screens/home_page.dart';
 import 'screens/landing_page.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           '/lp': (context) => const LandingPage(),
           '/hm': (context) => const HomePage(),
           '/mp': (context) => const Mandi(),
-          '/rp': (context) => Recommendation(),
+          '/rp': (context) => const RecomScreen(),
           '/bnb': (context) => const BNB(),
         });
   }
