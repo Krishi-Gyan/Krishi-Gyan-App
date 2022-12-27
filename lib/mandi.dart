@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:krishi_gyan/recommendation.dart';
-import './cards.dart';
-import 'account_page.dart';
+import 'package:krishi_gyan/cards.dart';
 
-enum widgetmake { buy, sell }
+enum WidgetMake { buy, sell }
 
-class mandi extends StatefulWidget {
+class Mandi extends StatefulWidget {
+  const Mandi({Key? key}) : super(key: key);
   @override
-  State<mandi> createState() => _mandiState();
+  State<Mandi> createState() => _MandiState();
 }
 
-class _mandiState extends State<mandi> {
-  widgetmake b = widgetmake.buy;
+class _MandiState extends State<Mandi> {
+  WidgetMake b = WidgetMake.buy;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class _mandiState extends State<mandi> {
       body: Stack(children: <Widget>[
         // ignore: unnecessary_new
         new Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
                   "assets/landing_page_pic.png"), // <-- BACKGROUND IMAGE
@@ -38,7 +37,7 @@ class _mandiState extends State<mandi> {
               Container(
                 height: size.height * 0.4,
                 width: size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.black12, //color
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(40),
@@ -54,16 +53,16 @@ class _mandiState extends State<mandi> {
                       SizedBox(
                         width: size.width * 0.4,
                       ),
-                      Icon(Icons.person)
+                      const Icon(Icons.person)
                     ],
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 90,
               ),
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.black12, //color
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(40),
@@ -79,30 +78,30 @@ class _mandiState extends State<mandi> {
                           TextButton(
                             onPressed: () {
                               setState(() {
-                                b = widgetmake.buy;
+                                b = WidgetMake.buy;
                               });
                             },
                             child: Text("Buy",
                                 style: TextStyle(
                                     fontSize: 40,
-                                    color: (b == widgetmake.buy)
+                                    color: (b == WidgetMake.buy)
                                         ? Colors.black
                                         : Colors.black54)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 100,
                           ),
                           TextButton(
                             onPressed: () {
                               setState(() {
-                                b = widgetmake.sell;
+                                b = WidgetMake.sell;
                               });
                             },
                             child: Text(
                               "Sell",
                               style: TextStyle(
                                   fontSize: 40,
-                                  color: (b == widgetmake.sell)
+                                  color: (b == WidgetMake.sell)
                                       ? Colors.black
                                       : Colors.black54),
                             ),
@@ -120,15 +119,15 @@ class _mandiState extends State<mandi> {
           ),
         ),
       ]),
-      backgroundColor: Color.fromARGB(255, 189, 207, 135),
+      backgroundColor: const Color.fromARGB(255, 189, 207, 135),
     );
   }
 
   Widget getCustomContainer() {
     switch (b) {
-      case widgetmake.buy:
+      case WidgetMake.buy:
         return getbuycard();
-      case widgetmake.sell:
+      case WidgetMake.sell:
         return getsellform();
       default:
         return getsellform();
@@ -136,126 +135,120 @@ class _mandiState extends State<mandi> {
   }
 
   Widget getsellform() {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width * 0.9,
-            decoration: BoxDecoration(
-                color: Colors.black26,
-                border: Border.all(color: Colors.black26),
-                borderRadius: BorderRadius.circular(20.0)),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: ListTile(
-                leading: FaIcon(FontAwesomeIcons.tree),
-                title: TextFormField(
-                  // controller: passwordController,
+    return Column(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+          decoration: BoxDecoration(
+              color: Colors.black26,
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.circular(20.0)),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: ListTile(
+              leading: const FaIcon(FontAwesomeIcons.tree),
+              title: TextFormField(
+                // controller: passwordController,
 
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'CROP',
-                  ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'CROP',
                 ),
               ),
             ),
           ),
-          SizedBox(height: 20),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.9,
-            decoration: BoxDecoration(
-                color: Colors.black26,
-                border: Border.all(color: Colors.black26),
-                borderRadius: BorderRadius.circular(20.0)),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: ListTile(
-                leading: FaIcon(FontAwesomeIcons.moneyBill1Wave),
-                title: TextFormField(
-                  // controller: passwordController,
+        ),
+        const SizedBox(height: 20),
+        Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+          decoration: BoxDecoration(
+              color: Colors.black26,
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.circular(20.0)),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: ListTile(
+              leading: const FaIcon(FontAwesomeIcons.moneyBill1Wave),
+              title: TextFormField(
+                // controller: passwordController,
 
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'Price',
-                  ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'Price',
                 ),
               ),
             ),
           ),
-          SizedBox(height: 20),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.9,
-            decoration: BoxDecoration(
-                color: Colors.black26,
-                border: Border.all(color: Colors.black26),
-                borderRadius: BorderRadius.circular(20.0)),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: ListTile(
-                leading: FaIcon(FontAwesomeIcons.weightScale),
-                title: TextFormField(
-                  // controller: passwordController,
+        ),
+        const SizedBox(height: 20),
+        Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+          decoration: BoxDecoration(
+              color: Colors.black26,
+              border: Border.all(color: Colors.black26),
+              borderRadius: BorderRadius.circular(20.0)),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: ListTile(
+              leading: const FaIcon(FontAwesomeIcons.weightScale),
+              title: TextFormField(
+                // controller: passwordController,
 
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'Yeild Amount',
-                  ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'Yeild Amount',
                 ),
               ),
             ),
           ),
-          Container(
-            width: 100,
-            child: ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      content: Text(
-                        'YOUR CROP is listed',
-                        style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontSize: 20,
+        ),
+        Container(
+          width: 100,
+          child: ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: const Text(
+                      'YOUR CROP is listed',
+                      style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontSize: 20,
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text(
+                          'Confirm',
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text(
-                            'Confirm',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: const Text(' List'),
-              style: ElevatedButton.styleFrom(
-                elevation: 40,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-
-                //   style: TextStyle(
-                //       color: Colors.blue, fontWeight: FontWeight.bold),
-                // ),
+                    ],
+                  );
+                },
+              );
+            },
+            child: const Text(' List'),
+            style: ElevatedButton.styleFrom(
+              elevation: 40,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 
   Widget getbuycard() {
     return Column(
-      children: [
-        cards(),
-        cards(),
-        cards(),
+      children: const [
+        MyCards(),
+        MyCards(),
+        MyCards(),
       ],
     );
   }

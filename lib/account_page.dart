@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AccountPage extends StatelessWidget {
+  const AccountPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,7 +9,7 @@ class AccountPage extends StatelessWidget {
       //background image
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 115,
             width: 115,
             child: Icon(
@@ -16,7 +17,7 @@ class AccountPage extends StatelessWidget {
               size: 50,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
@@ -31,7 +32,7 @@ class AccountPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        children: [
+                        children: const [
                           Text(
                             'name',
                             style: TextStyle(
@@ -52,7 +53,7 @@ class AccountPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        children: [
+                        children: const [
                           Text(
                             'phone number',
                             style: TextStyle(
@@ -69,7 +70,7 @@ class AccountPage extends StatelessWidget {
             ),
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           //second container
@@ -87,7 +88,7 @@ class AccountPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        children: [
+                        children: const [
                           Text(
                             'Crop Name',
                             style: TextStyle(
@@ -108,7 +109,7 @@ class AccountPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        children: [
+                        children:const [
                           Text(
                             'Location',
                             style: TextStyle(
@@ -129,7 +130,7 @@ class AccountPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        children: [
+                        children:const [
                           Text(
                             'Soil Moisture',
                             style: TextStyle(
@@ -150,7 +151,7 @@ class AccountPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        children: [
+                        children:const [
                           Text(
                             'Nitrogen Content',
                             style: TextStyle(
@@ -167,7 +168,7 @@ class AccountPage extends StatelessWidget {
             ),
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
 
@@ -183,7 +184,7 @@ class AccountPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        children: [
+                        children: const [
                           Text(
                             'Order Status',
                             style: TextStyle(
@@ -200,7 +201,7 @@ class AccountPage extends StatelessWidget {
             ),
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
 
@@ -216,7 +217,7 @@ class AccountPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        children: [
+                        children: const [
                           Text(
                             'Expert Status',
                             style: TextStyle(
@@ -233,7 +234,7 @@ class AccountPage extends StatelessWidget {
                   top: 300,
                   left: 500,
                   child: TextButton(
-                    child: Text('Call the Expert'),
+                    child: const Text('Call the Expert'),
                     onPressed: () {},
                     //style: ButtonStyle(),
                   ),

@@ -7,21 +7,22 @@ import 'mandi.dart';
 import './bottom_navigation.dart';
 
 void main() async {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MyApp2(),
+        home: const MyApp2(),
         routes: {
-          '/lp': (context) => LandingPage(),
-          '/hm': (context) => HomePage(),
-          '/mp': (context) => mandi(),
+          '/lp': (context) => const LandingPage(),
+          '/hm': (context) => const HomePage(),
+          '/mp': (context) => const Mandi(),
           '/rp': (context) => Recommendation(),
-          '/bnb': (context) => BNB(),
+          '/bnb': (context) => const BNB(),
         });
   }
 }
@@ -36,6 +37,6 @@ class MyApp2 extends StatefulWidget {
 class _MyApp2State extends State<MyApp2> {
   @override
   Widget build(BuildContext context) {
-    return LandingPage();
+    return const LandingPage();
   }
 }

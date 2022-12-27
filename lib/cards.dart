@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class cards extends StatefulWidget {
+class MyCards extends StatefulWidget {
+  const MyCards({Key? key}) : super(key: key);
   @override
-  State<cards> createState() => _cardsState();
+  State<MyCards> createState() => _MyCardsState();
 }
 
-class _cardsState extends State<cards> {
+class _MyCardsState extends State<MyCards> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -26,19 +26,12 @@ class _cardsState extends State<cards> {
                   borderRadius: const BorderRadius.all(
                     Radius.circular(30),
                   ),
-                  color: Colors.black26
-                  // gradient: const LinearGradient(
-                  //   // colors: [
-                  //   //   Color.fromARGB(255, 1, 115, 116),
-                  //   //   Color.fromARGB(255, 1, 162, 153),
-                  //   // ],
-                  // ),
-                  ),
+                  color: Colors.black26),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // FaIcon(FontAwesomeIcons.sellcast),
-                  Icon(Icons.sell_sharp),
+                  const Icon(Icons.sell_sharp),
                   Text(
                     'Lorem ipsum',
                     style: GoogleFonts.jost(color: Colors.white),
@@ -90,10 +83,10 @@ class _cardsState extends State<cards> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: Icon(Icons.numbers),
-                            content: TextField(
+                            title: const Icon(Icons.numbers),
+                            content: const TextField(
                               keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 labelText: 'Enter the Quantity',
                               ),
                             ),

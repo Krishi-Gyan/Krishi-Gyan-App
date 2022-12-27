@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:krishi_gyan/home_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -9,14 +8,14 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  TextEditingController _phoneNumberController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _cropController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _cropController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
             "assets/landing_page_pic.png",
@@ -29,8 +28,8 @@ class _LandingPageState extends State<LandingPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 170),
-              Text(
+              const SizedBox(height: 170),
+              const Text(
                 'Krishi Gyan',
                 style: TextStyle(
                   color: Colors.green,
@@ -48,13 +47,13 @@ class _LandingPageState extends State<LandingPage> {
                     hintText: 'Enter your name',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                       ),
                     ),
@@ -71,13 +70,13 @@ class _LandingPageState extends State<LandingPage> {
                     hintText: 'Enter your phone number',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                       ),
                     ),
@@ -94,13 +93,13 @@ class _LandingPageState extends State<LandingPage> {
                     hintText: 'Enter the crops your grow',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                       ),
                     ),
@@ -117,13 +116,13 @@ class _LandingPageState extends State<LandingPage> {
                     hintText: 'Enter your permanent address',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                       ),
                     ),
@@ -132,17 +131,17 @@ class _LandingPageState extends State<LandingPage> {
               ),
               OutlinedButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Call an expert',
                   style: TextStyle(color: Colors.black),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               MaterialButton(
                 onPressed: () => Navigator.of(context).pushNamed('/bnb'),
-                child: Text(
+                child: const Text(
                   'Submit',
                   style: TextStyle(color: Colors.white),
                 ),

@@ -14,10 +14,10 @@ class BNB extends StatefulWidget {
 class _BNBState extends State<BNB> {
   var selectedItem = 0;
   List children = [
-    mandi(),
+    const Mandi(),
     Recommendation(),
-    mandi(),
-    AccountPage(),
+    const Mandi(),
+    const AccountPage(),
   ];
   @override
   Widget build(BuildContext context) {
