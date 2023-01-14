@@ -4,6 +4,7 @@ import 'package:krishi_gyan/widgets/bottom_navigation.dart';
 import 'package:krishi_gyan/screens/landing_page.dart';
 import 'package:krishi_gyan/screens/mandi.dart';
 
+// comment here
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
