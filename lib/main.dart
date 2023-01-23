@@ -36,8 +36,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyApp2 extends StatefulWidget {
-  const MyApp2({Key? key}) : super(key: key);
-
   @override
   State<MyApp2> createState() => _MyApp2State();
 }
