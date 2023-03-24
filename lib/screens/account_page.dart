@@ -1,248 +1,239 @@
 import 'package:flutter/material.dart';
 
-class AccountPage extends StatelessWidget {
+import '../constants/colors.dart';
+
+class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
+
+  @override
+  State<AccountPage> createState() => _AccountPageState();
+}
+
+class _AccountPageState extends State<AccountPage> {
+  List profile = [
+    {
+      "name": "Lorem Ipsum",
+      "mobile": "Lorem Ipsum",
+      "location": "Lorem Ipsum",
+      "crop": "Lorem Ipsum",
+      "soilMoisture": "Lorem Ipsum",
+      "nitrogenContent": "Lorem Ipsum",
+    }
+  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.green,
-      //background image
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 115,
-            width: 115,
-            child: Icon(
-              Icons.account_circle_outlined,
-              size: 50,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Center(
+            child: Text(
+              'Account',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 50,
-            width: double.infinity,
-            color: Colors.black12,
-            child: Column(
-              children: [
-                Positioned(
-                  top: 20,
-                  left: 110,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text(
-                            'name',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-                //phone number
-                Positioned(
-                  top: 20,
-                  left: 110,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text(
-                            'phone number',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+          backgroundColor: darkGreen,
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(50),
             ),
           ),
-
-          const SizedBox(
-            height: 10,
-          ),
-          //second container
-
-          Container(
-            height: 100,
-            width: double.infinity,
-            color: Colors.black12,
-            child: Column(
-              children: [
-                //crop name
-                Positioned(
-                  top: 20,
-                  left: 110,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                  color: lightGreen,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 1.0, // soften the shadow
+                      spreadRadius: 1.0, //extend the shadow
+                      offset: Offset(
+                        -5.0,
+                        -5.0,
+                      ),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
                   child: Column(
                     children: [
-                      Row(
-                        children: const [
-                          Text(
-                            'Crop Name',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
+                      Container(
+                        height: 70,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        padding: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(
+                          color: darkGreen,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
                           ),
-                        ],
+                        ),
+                        child: const Text(
+                          'Order Status',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 70,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        padding: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(
+                          color: darkGreen,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                        ),
+                        child: const Text(
+                          'Expert Status',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-
-                //Location
-                Positioned(
-                  top: 20,
-                  left: 110,
-                  child: Column(
-                    children: [
-                      Row(
-                        children:const [
-                          Text(
-                            'Location',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
+              ),
+              Container(
+                height: 500,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 1.0, // soften the shadow
+                      spreadRadius: 1.0, //extend the shadow
+                      offset: Offset(
+                        -5.0,
+                        -5.0,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-
-                //Soil moisture
-                Positioned(
-                  top: 20,
-                  left: 110,
-                  child: Column(
-                    children: [
-                      Row(
-                        children:const [
-                          Text(
-                            'Soil Moisture',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
+                child: Column(
+                    children: profile.map((e) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Card(
+                          child: Row(
+                            children: [
+                              const Text('Name: '),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(e['name']),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-                //Nitrogen Content
-                Positioned(
-                  top: 20,
-                  left: 110,
-                  child: Column(
-                    children: [
-                      Row(
-                        children:const [
-                          Text(
-                            'Nitrogen Content',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Card(
+                          child: Row(
+                            children: [
+                              const Text('Mobile No.: '),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(e['mobile']),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(
-            height: 20,
-          ),
-
-          Container(
-            height: 80,
-            width: double.infinity,
-            color: Colors.black12,
-            child: Column(
-              children: [
-                Positioned(
-                  top: 20,
-                  left: 110,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text(
-                            'Order Status',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Card(
+                          child: Row(
+                            children: [
+                              const Text('Location: '),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(e['location']),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(
-            height: 20,
-          ),
-
-          Container(
-            height: 100,
-            width: double.infinity,
-            color: Colors.black12,
-            child: Column(
-              children: [
-                Positioned(
-                  top: 20,
-                  left: 110,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text(
-                            'Expert Status',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Card(
+                          child: Row(
+                            children: [
+                              const Text('Crop Name: '),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(e['crop']),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  top: 300,
-                  left: 500,
-                  child: TextButton(
-                    child: const Text('Call the Expert'),
-                    onPressed: () {},
-                    //style: ButtonStyle(),
-                  ),
-                ),
-              ],
-            ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Card(
+                          child: Row(
+                            children: [
+                              const Text('Soil Moisture: '),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(e['soilMoisture']),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Card(
+                          child: Row(
+                            children: [
+                              const Text('Nitrogen Content: '),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(e['nitrogenContent']),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList()),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
