@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:krishi_gyan/constants/colors.dart';
 import 'package:krishi_gyan/widgets/cards.dart';
 
 enum WidgetMake { buy, sell }
@@ -19,107 +20,95 @@ class _MandiState extends State<Mandi> {
     String datetime = DateTime.now().toString();
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Stack(children: <Widget>[
-        // ignore: unnecessary_new
-        new Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                  "assets/landing_page_pic.png"), // <-- BACKGROUND IMAGE
-              fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: size.height * 0.45,
+              width: size.width,
+              decoration: const BoxDecoration(
+                  color: darkGreen, //color
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50))),
+              // child: Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: Row(
+              //     children: <Widget>[
+              //       Text(
+              //         datetime,
+              //         textAlign: TextAlign.left,
+              //       ),
+              //       SizedBox(
+              //         width: size.width * 0.4,
+              //       ),
+              //       const Icon(Icons.person)
+              //     ],
+              //   ),
+              // ),
             ),
-          ),
-        ),
-
-        SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: size.height * 0.4,
-                width: size.width,
-                decoration: const BoxDecoration(
-                    color: Colors.black12, //color
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40))),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        datetime,
-                        textAlign: TextAlign.left,
-                      ),
-                      SizedBox(
-                        width: size.width * 0.4,
-                      ),
-                      const Icon(Icons.person)
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 90,
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                    color: Colors.black12, //color
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40))),
-                height: size.height * 0.5,
-                width: size.width,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          TextButton(
-                            onPressed: () {
-                              setState(() {
-                                b = WidgetMake.buy;
-                              });
-                            },
-                            child: Text("Buy",
-                                style: TextStyle(
-                                    fontSize: 40,
-                                    color: (b == WidgetMake.buy)
-                                        ? Colors.black
-                                        : Colors.black54)),
-                          ),
-                          const SizedBox(
-                            width: 100,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              setState(() {
-                                b = WidgetMake.sell;
-                              });
-                            },
-                            child: Text(
-                              "Sell",
+            const SizedBox(
+              height: 25,
+            ),
+            Container(
+              margin: const EdgeInsets.all(15),
+              decoration: const BoxDecoration(
+                  color: lightGreen, //color
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
+              height: size.height * 0.5,
+              width: size.width,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            setState(() {
+                              b = WidgetMake.buy;
+                            });
+                          },
+                          child: Text("Buy",
                               style: TextStyle(
-                                  fontSize: 40,
-                                  color: (b == WidgetMake.sell)
+                                  fontSize: 25,
+                                  color: (b == WidgetMake.buy)
                                       ? Colors.black
-                                      : Colors.black54),
-                            ),
+                                      : Colors.black54)),
+                        ),
+                        const SizedBox(
+                          width: 100,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            setState(() {
+                              b = WidgetMake.sell;
+                            });
+                          },
+                          child: Text(
+                            "Sell",
+                            style: TextStyle(
+                                fontSize: 25,
+                                color: (b == WidgetMake.sell)
+                                    ? Colors.black
+                                    : Colors.black54),
                           ),
-                        ],
-                      ),
-                      Container(
-                        child: getCustomContainer(),
-                      )
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      child: getCustomContainer(),
+                    )
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ]),
-      backgroundColor: const Color.fromARGB(255, 189, 207, 135),
+      ),
     );
   }
 
@@ -140,13 +129,16 @@ class _MandiState extends State<Mandi> {
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
-              color: Colors.black26,
-              border: Border.all(color: Colors.black26),
+              color: Colors.transparent,
+              border: Border.all(color: darkGreen),
               borderRadius: BorderRadius.circular(20.0)),
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: ListTile(
-              leading: const FaIcon(FontAwesomeIcons.tree),
+              leading: const FaIcon(
+                FontAwesomeIcons.tree,
+                color: darkGreen,
+              ),
               title: TextFormField(
                 // controller: passwordController,
 
@@ -162,13 +154,16 @@ class _MandiState extends State<Mandi> {
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
-              color: Colors.black26,
-              border: Border.all(color: Colors.black26),
+              color: Colors.transparent,
+              border: Border.all(color: darkGreen),
               borderRadius: BorderRadius.circular(20.0)),
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: ListTile(
-              leading: const FaIcon(FontAwesomeIcons.moneyBill1Wave),
+              leading: const FaIcon(
+                FontAwesomeIcons.moneyBill1Wave,
+                color: darkGreen,
+              ),
               title: TextFormField(
                 // controller: passwordController,
 
@@ -184,13 +179,16 @@ class _MandiState extends State<Mandi> {
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
-              color: Colors.black26,
-              border: Border.all(color: Colors.black26),
+              color: Colors.transparent,
+              border: Border.all(color: darkGreen),
               borderRadius: BorderRadius.circular(20.0)),
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: ListTile(
-              leading: const FaIcon(FontAwesomeIcons.weightScale),
+              leading: const FaIcon(
+                FontAwesomeIcons.weightScale,
+                color: darkGreen,
+              ),
               title: TextFormField(
                 // controller: passwordController,
 
@@ -202,7 +200,7 @@ class _MandiState extends State<Mandi> {
             ),
           ),
         ),
-        Container(
+        SizedBox(
           width: 100,
           child: ElevatedButton(
             onPressed: () {
@@ -233,6 +231,7 @@ class _MandiState extends State<Mandi> {
             child: const Text(' List'),
             style: ElevatedButton.styleFrom(
               elevation: 40,
+              backgroundColor: darkGreen,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:krishi_gyan/constants/colors.dart';
 
 class MyCards extends StatefulWidget {
   const MyCards({Key? key}) : super(key: key);
@@ -19,14 +20,14 @@ class _MyCardsState extends State<MyCards> {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(15),
-              margin: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.transparent),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(30),
-                  ),
-                  color: Colors.black26),
+                border: Border.all(color: darkGreen),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(30),
+                ),
+                color: Colors.transparent,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -34,7 +35,7 @@ class _MyCardsState extends State<MyCards> {
                   const Icon(Icons.sell_sharp),
                   Text(
                     'Lorem ipsum',
-                    style: GoogleFonts.jost(color: Colors.white),
+                    style: GoogleFonts.jost(color: Colors.black),
                   ),
                   const SizedBox(
                     height: 5,
@@ -43,7 +44,7 @@ class _MyCardsState extends State<MyCards> {
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
                     style: TextStyle(
                       fontSize: 10,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(
@@ -59,7 +60,7 @@ class _MyCardsState extends State<MyCards> {
                         'Lorem ipsum',
                         style: TextStyle(
                           fontSize: 10,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                       SizedBox(
@@ -69,7 +70,7 @@ class _MyCardsState extends State<MyCards> {
                         'Lorem ipsum',
                         style: TextStyle(
                           fontSize: 10,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ],
@@ -104,9 +105,8 @@ class _MyCardsState extends State<MyCards> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-
-                        // backgroundColor: const Color.fromARGB(255, 36, 35, 35),
-                        ),
+                      backgroundColor: darkGreen,
+                    ),
                     child: const Text('BUY'),
                   )
                 ],

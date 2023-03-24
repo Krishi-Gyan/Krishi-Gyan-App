@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:krishi_gyan/widgets/recommendation.dart';
+import 'package:krishi_gyan/screens/gyan.dart';
+import 'package:krishi_gyan/screens/recommendation.dart';
 import 'package:krishi_gyan/screens/recom_screen.dart';
 
 import 'screens/account_page.dart';
@@ -15,7 +16,7 @@ class BNB extends StatefulWidget {
 class _BNBState extends State<BNB> {
   var selectedItem = 0;
   List children = [
-    const Mandi(),
+    const KrishiGyan(),
     const RecomScreen(),
     const Mandi(),
     const AccountPage(),

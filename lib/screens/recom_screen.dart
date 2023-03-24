@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krishi_gyan/widgets/recommendation.dart';
+import 'package:krishi_gyan/screens/recommendation.dart';
 
 class RecomScreen extends StatefulWidget {
   const RecomScreen({Key? key}) : super(key: key);
