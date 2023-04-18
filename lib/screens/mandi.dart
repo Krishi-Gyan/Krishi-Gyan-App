@@ -4,14 +4,11 @@ import 'package:krishi_gyan/constants/colors.dart';
 import 'package:krishi_gyan/widgets/cards.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-// import 'package:location/location.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:geolocator/geolocator.dart';
 
 
-//
-//
-//
+
 enum WidgetMake { buy, sell }
 //
 class Mandi extends StatefulWidget {
@@ -346,37 +343,5 @@ class _MandiState extends State<Mandi> {
     );
   }
 }
-
-    // @override
-    // Widget build(BuildContext context) {
-    //   FlutterMap flutterMap = FlutterMap(
-    //     mapController: _mapController,
-    //     options: _mapOptions,
-    //     children: [
-    //       TileLayer(
-    //         urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    //         subdomains: ['a', 'b', 'c'],
-    //         maxZoom: 19,
-    //       ),
-    //       MarkerLayer(
-    //         markers: position!=null ? [
-    //           Marker(
-    //             width: 80.0,
-    //             height: 80.0,
-    //             point: LatLng(position!.latitude,position!.longitude),
-    //             builder: (ctx) => Container(
-    //               child: Icon(Icons.location_on_sharp),
-    //             ),
-    //           ),
-    //         ] : [],
-    //       )
-    //    ]
-    //     );
-    //
-    //   return Scaffold(
-    //     body: flutterMap,
-    //   );
-    // }
-// }
 
 
