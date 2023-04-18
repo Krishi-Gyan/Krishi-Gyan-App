@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:krishi_gyan/constants/colors.dart';
 import 'package:krishi_gyan/widgets/cards.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+// import 'package:location/location.dart';
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
+import 'package:geolocator/geolocator.dart';
 
+
+//
+//
+//
 enum WidgetMake { buy, sell }
-
+//
 class Mandi extends StatefulWidget {
   const Mandi({Key? key}) : super(key: key);
   @override
@@ -12,11 +21,95 @@ class Mandi extends StatefulWidget {
 }
 
 class _MandiState extends State<Mandi> {
+
   WidgetMake b = WidgetMake.buy;
+  MapController _mapController = MapController();
+  MapOptions _mapOptions = MapOptions();
+  Position? position;
+
+  Future<void> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      await Geolocator.openLocationSettings();
+      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+      if(!serviceEnabled){
+        return;
+      }
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      await Geolocator.openLocationSettings();
+
+    }
+      Position _position = await Geolocator.getCurrentPosition();
+
+    final LocationSettings locationSettings = LocationSettings(
+      accuracy: LocationAccuracy.best,
+      distanceFilter: 100,
+    );
+    Geolocator.getPositionStream(locationSettings: locationSettings)
+        .listen((Position _position) {
+      setState(() {
+        position = _position;
+      });
+    });
+      _onLocationChanged(_position);
+  }
+    void _onLocationChanged(Position _position) {
+      _mapController.move(
+        LatLng(_position!.latitude, _position!.longitude),
+        19,);
+      _mapOptions = MapOptions(
+        center: LatLng(_position!.latitude, _position!.longitude),
+        zoom: _mapController.zoom,
+      );
+    }
+    void initState() {
+      super.initState();
+      _determinePosition();
+    }
+
+
 
   @override
   Widget build(BuildContext context) {
+
     // widgetmake s = widgetmake.sell;
+    FlutterMap flutterMap = FlutterMap(
+        mapController: _mapController,
+        options: _mapOptions,
+        children: [
+          TileLayer(
+            urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            subdomains: ['a', 'b', 'c'],
+            maxZoom: 25,
+          ),
+          MarkerLayer(
+            markers: position!=null ? [
+              Marker(
+                width: 80.0,
+                height: 80.0,
+                point: LatLng(position!.latitude,position!.longitude),
+                builder: (ctx) => Container(
+                  child: Icon(Icons.location_on_sharp),
+                ),
+              ),
+            ] : [],
+          )
+        ]
+    );
+
     String datetime = DateTime.now().toString();
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -31,6 +124,7 @@ class _MandiState extends State<Mandi> {
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(50),
                       bottomRight: Radius.circular(50))),
+              child: flutterMap,
               // child: Align(
               //   alignment: Alignment.centerLeft,
               //   child: Row(
@@ -252,3 +346,37 @@ class _MandiState extends State<Mandi> {
     );
   }
 }
+
+    // @override
+    // Widget build(BuildContext context) {
+    //   FlutterMap flutterMap = FlutterMap(
+    //     mapController: _mapController,
+    //     options: _mapOptions,
+    //     children: [
+    //       TileLayer(
+    //         urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    //         subdomains: ['a', 'b', 'c'],
+    //         maxZoom: 19,
+    //       ),
+    //       MarkerLayer(
+    //         markers: position!=null ? [
+    //           Marker(
+    //             width: 80.0,
+    //             height: 80.0,
+    //             point: LatLng(position!.latitude,position!.longitude),
+    //             builder: (ctx) => Container(
+    //               child: Icon(Icons.location_on_sharp),
+    //             ),
+    //           ),
+    //         ] : [],
+    //       )
+    //    ]
+    //     );
+    //
+    //   return Scaffold(
+    //     body: flutterMap,
+    //   );
+    // }
+// }
+
+
