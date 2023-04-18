@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:krishi_gyan/screens/recom_screen.dart';
 import 'screens/recommendation.dart';
-
 import 'screens/home_page.dart';
 import 'screens/landing_page.dart';
 import 'screens/mandi.dart';
