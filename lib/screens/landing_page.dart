@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:krishi_gyan/provider/loginProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/colors.dart';
 
@@ -13,6 +16,13 @@ class _LandingPageState extends State<LandingPage> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _cropController = TextEditingController();
+  void reg() {
+    context
+        .read<Login>()
+        .register('test@gmail.com', "123456789", "test", "92928383748")
+        .then((value) => null)
+        .catchError((o) {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +162,7 @@ class _LandingPageState extends State<LandingPage> {
                   SizedBox(
                     width: 120,
                     child: MaterialButton(
-                      onPressed: () => Navigator.of(context).pushNamed('/bnb'),
+                      onPressed: reg,
                       child: const Text(
                         'Submit',
                         style: TextStyle(color: Colors.white),
