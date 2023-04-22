@@ -53,8 +53,11 @@ class _MandiState extends State<Mandi> {
             Container(
               margin: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
-                  color: lightGreen, //color
-                  borderRadius: BorderRadius.all(Radius.circular(30))),
+                color: lightGreen, //color
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30),
+                ),
+              ),
               height: size.height * 0.5,
               width: size.width,
               child: SingleChildScrollView(

@@ -185,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                               size: 45,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],

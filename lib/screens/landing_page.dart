@@ -22,6 +22,7 @@ class _LandingPageState extends State<LandingPage> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.83,
               decoration: const BoxDecoration(
                 color: lightGreen,
                 borderRadius: BorderRadius.only(
@@ -41,6 +42,7 @@ class _LandingPageState extends State<LandingPage> {
                 ],
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(height: 60),
                   const Text(

@@ -68,6 +68,72 @@ class _RecommendationState extends State<Recommendation> {
                     ),
                   ],
                 ),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 80,
+                      ),
+                      Row(
+                        children: const [
+                          SizedBox(
+                            width: 180,
+                          ),
+                          Text(
+                            'city name',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        '32 c',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 50,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        children: const [
+                          Text(
+                            'Humidity',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            'Moisture',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            'Air Pollution',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 20,
