@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:krishi_gyan/screens/recom_screen.dart';
+import 'package:krishi_gyan/screens/register.dart';
+import 'package:krishi_gyan/screens/sign-in-page.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_page.dart';
 import 'screens/landing_page.dart';
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
             '/mp': (context) => const Mandi(),
             '/rp': (context) => const RecomScreen(),
             '/bnb': (context) => const BNB(),
+            '/signin': (context) => const LoginPage(),
+            '/register': (context) => const Register(),
           }),
     );
   }

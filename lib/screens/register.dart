@@ -2,19 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
+
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterState extends State<Register> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
 
   @override
   void dispose() {
     emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    mobileController.dispose();
     super.dispose();
   }
 
@@ -45,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 50),
 
-                //email text
+                //name text
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
@@ -56,7 +62,54 @@ class _LoginPageState extends State<LoginPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextField(
+                        controller: nameController,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Name',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+
+                //mobile text
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(20.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: TextFormField(
+                        controller: mobileController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Mobile',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+                //email text
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(20.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: TextFormField(
                         controller: emailController,
+                        obscureText: true,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Email',
@@ -65,7 +118,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 10),
 
                 //password text
@@ -107,81 +159,20 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                //   child: Container(
-                //     padding: EdgeInsets.all(20.0),
-                //     decoration: BoxDecoration(
-                //         color: Colors.blue,
-                //         borderRadius: BorderRadius.circular(12)),
-                //     child: Center(
-                //       child: Text(
-                //         'Sign In',
-                //         style: GoogleFonts.basic(
-                //           color: Colors.white,
-                //           fontWeight: FontWeight.bold,
-                //           fontSize: 18,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+  
                 const SizedBox(height: 20),
-
-                //not a member
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Not a Member? '),
-                     SizedBox(
+                    const Text('Already a member? '),
+                    SizedBox(
                       child: TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/bnb');
                         },
-                        child: const Text(' Register Here!'),
+                        child: const Text(' SignIn Here!'),
                       ),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.all(10),
-                          alignment: Alignment.topCenter,
-                          height: 40,
-                          child: IconButton(
-                            onPressed: () =>
-                                Navigator.of(context).pushNamed('/lp'),
-                            icon: const Icon(
-                              Icons.facebook,
-                              size: 50,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(10, 23, 10, 10),
-                          height: 60,
-                          alignment: Alignment.center,
-                          child: IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamed('/lp');
-                            },
-                            icon: const FaIcon(
-                              FontAwesomeIcons.google,
-                              size: 45,
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
                   ],
                 ),
