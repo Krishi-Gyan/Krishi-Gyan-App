@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+    version: "2.1.0"
+  carousel_slider:
+    dependency: "direct main"
+    description:
+      name: carousel_slider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.1"
   characters:
     dependency: transitive
     description:
@@ -509,6 +517,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
+    version: "0.4.13"
   tuple:
     dependency: transitive
     description:
@@ -541,6 +550,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+    version: "2.1.3"
   win32:
     dependency: transitive
     description:

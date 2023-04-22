@@ -267,129 +267,144 @@ class _MandiState extends State<Mandi> {
       case WidgetMake.buy:
         return getbuycard();
       case WidgetMake.sell:
-        return getsellform();
+        return getSellForm(context);
       default:
-        return getsellform();
+        return getSellForm(context);
     }
   }
 
-  Widget getsellform() {
-    return Column(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(color: darkGreen),
-              borderRadius: BorderRadius.circular(20.0)),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: ListTile(
-              leading: const FaIcon(
-                FontAwesomeIcons.tree,
-                color: darkGreen,
-              ),
-              title: TextFormField(
-                // controller: passwordController,
-
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'CROP',
+  Widget getSellForm(BuildContext context) {
+    return Column(children: [
+      Container(
+        width: MediaQuery.of(context).size.width * 0.9,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          border: Border.all(color: darkGreen),
+          borderRadius: BorderRadius.circular(20.0),
+          // image: const DecorationImage(
+          //   image: AssetImage('assets/crop.png'),
+          // ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: ListTile(
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Image(
+                  image: AssetImage('assets/crop.png'),
+                  color: darkGreen,
                 ),
+              ],
+            ),
+            title: TextFormField(
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                labelText: 'Crop',
               ),
             ),
           ),
         ),
-        const SizedBox(height: 20),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(color: darkGreen),
-              borderRadius: BorderRadius.circular(20.0)),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: ListTile(
-              leading: const FaIcon(
-                FontAwesomeIcons.moneyBill1Wave,
-                color: darkGreen,
-              ),
-              title: TextFormField(
-                // controller: passwordController,
-
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Price',
+      ),
+      const SizedBox(height: 20),
+      Container(
+        width: MediaQuery.of(context).size.width * 0.9,
+        decoration: BoxDecoration(
+            color: Colors.transparent,
+            border: Border.all(color: darkGreen),
+            borderRadius: BorderRadius.circular(20.0)),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: ListTile(
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                FaIcon(
+                  FontAwesomeIcons.moneyBill1Wave,
+                  color: darkGreen,
                 ),
+              ],
+            ),
+            title: TextFormField(
+              // controller: passwordController,
+
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                labelText: 'Price',
               ),
             ),
           ),
         ),
-        const SizedBox(height: 20),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(color: darkGreen),
-              borderRadius: BorderRadius.circular(20.0)),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: ListTile(
-              leading: const FaIcon(
-                FontAwesomeIcons.weightScale,
-                color: darkGreen,
-              ),
-              title: TextFormField(
-                // controller: passwordController,
-
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Yeild Amount',
+      ),
+      const SizedBox(height: 20),
+      Container(
+        width: MediaQuery.of(context).size.width * 0.9,
+        decoration: BoxDecoration(
+            color: Colors.transparent,
+            border: Border.all(color: darkGreen),
+            borderRadius: BorderRadius.circular(20.0)),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: ListTile(
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                FaIcon(
+                  FontAwesomeIcons.weightScale,
+                  color: darkGreen,
                 ),
+              ],
+            ),
+            title: TextFormField(
+              // controller: passwordController,
+
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                labelText: 'Image',
               ),
             ),
           ),
         ),
-        SizedBox(
-          width: 100,
-          child: ElevatedButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    content: const Text(
-                      'YOUR CROP is listed',
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        fontSize: 20,
+      ),
+      SizedBox(
+        width: 100,
+        child: ElevatedButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  content: const Text(
+                    'YOUR CROP is listed',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 20,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text(
+                        'Confirm',
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text(
-                          'Confirm',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            child: const Text(' List'),
-            style: ElevatedButton.styleFrom(
-              elevation: 40,
-              backgroundColor: darkGreen,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Text(' List'),
+          style: ElevatedButton.styleFrom(
+            elevation: 40,
+            backgroundColor: darkGreen,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
             ),
           ),
-        )
-      ],
-    );
+        ),
+      ),
+    ]);
   }
 
   Widget getbuycard() {
