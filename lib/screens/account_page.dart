@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -46,11 +47,11 @@ class _AccountPageState extends State<AccountPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 4.h,
               ),
               Container(
-                height: 200,
+                height: 30.h,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   color: lightGreen,
@@ -71,11 +72,11 @@ class _AccountPageState extends State<AccountPage> {
                   ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: EdgeInsets.all(4.5.h),
                   child: Column(
                     children: [
                       Container(
-                        height: 70,
+                        height: 20.h,
                         width: MediaQuery.of(context).size.width * 0.8,
                         padding: const EdgeInsets.all(10),
                         decoration: const BoxDecoration(
@@ -85,27 +86,7 @@ class _AccountPageState extends State<AccountPage> {
                           ),
                         ),
                         child: const Text(
-                          'Order Status',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 70,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        padding: const EdgeInsets.all(10),
-                        decoration: const BoxDecoration(
-                          color: darkGreen,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                        ),
-                        child: const Text(
-                          'Expert Status',
+                          'Soil Status',
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -116,7 +97,7 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
               Container(
-                height: 500,
+                height: 45.h,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -139,92 +120,128 @@ class _AccountPageState extends State<AccountPage> {
                 child: Column(
                     children: profile.map((e) {
                   return Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(2.h),
                     child: Column(
                       children: [
-                        Card(
-                          child: Row(
-                            children: [
-                              const Text('Name: '),
-                              const SizedBox(
-                                width: 5,
+                        SizedBox(
+                          height: 6.h,
+                          child: Card(
+                            child: Padding(
+                              padding: EdgeInsets.all(2.w),
+                              child: Row(
+                                children: [
+                                  const Text('Name: '),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  Text(e['name']),
+                                ],
                               ),
-                              Text(e['name']),
-                            ],
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 0.2.h,
                         ),
-                        Card(
-                          child: Row(
-                            children: [
-                              const Text('Mobile No.: '),
-                              const SizedBox(
-                                width: 5,
+                        SizedBox(
+                          height: 6.h,
+                          child: Card(
+                            child: Padding(
+                              padding: EdgeInsets.all(2.w),
+                              child: Row(
+                                children: [
+                                  const Text('Mobile No.: '),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  Text(e['mobile']),
+                                ],
                               ),
-                              Text(e['mobile']),
-                            ],
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 0.2.h,
                         ),
-                        Card(
-                          child: Row(
-                            children: [
-                              const Text('Location: '),
-                              const SizedBox(
-                                width: 5,
+                        SizedBox(
+                          height: 6.h,
+                          child: Card(
+                            child: Padding(
+                              padding: EdgeInsets.all(2.w),
+                              child: Row(
+                                children: [
+                                  const Text('Location: '),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  Text(e['location']),
+                                ],
                               ),
-                              Text(e['location']),
-                            ],
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 0.2.h,
                         ),
-                        Card(
-                          child: Row(
-                            children: [
-                              const Text('Crop Name: '),
-                              const SizedBox(
-                                width: 5,
+                        SizedBox(
+                          height: 6.h,
+                          child: Card(
+                            child: Padding(
+                              padding: EdgeInsets.all(2.w),
+                              child: Row(
+                                children: [
+                                  const Text('Crop Name: '),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  Text(e['crop']),
+                                ],
                               ),
-                              Text(e['crop']),
-                            ],
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 0.2.h,
                         ),
-                        Card(
-                          child: Row(
-                            children: [
-                              const Text('Soil Moisture: '),
-                              const SizedBox(
-                                width: 5,
+                        SizedBox(
+                          height: 6.h,
+                          child: Card(
+                            child: Padding(
+                              padding: EdgeInsets.all(2.w),
+                              child: Row(
+                                children: [
+                                  const Text('Soil Moisture: '),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  Text(e['soilMoisture']),
+                                ],
                               ),
-                              Text(e['soilMoisture']),
-                            ],
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 0.2.h,
                         ),
-                        Card(
-                          child: Row(
-                            children: [
-                              const Text('Nitrogen Content: '),
-                              const SizedBox(
-                                width: 5,
+                        SizedBox(
+                          height: 6.h,
+                          child: Card(
+                            child: Padding(
+                              padding: EdgeInsets.all(2.w),
+                              child: Row(
+                                children: [
+                                  const Text('Nitrogen Content: '),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  Text(e['nitrogenContent']),
+                                ],
                               ),
-                              Text(e['nitrogenContent']),
-                            ],
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: 1.h,
                         ),
                       ],
                     ),
