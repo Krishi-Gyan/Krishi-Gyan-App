@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:krishi_gyan/provider/databaseProvider.dart';
 import 'package:krishi_gyan/screens/recom_screen.dart';
 import 'package:krishi_gyan/screens/register.dart';
 import 'package:krishi_gyan/screens/sign-in-page.dart';
@@ -31,22 +32,37 @@ class MyApp extends StatelessWidget {
               create: (context) => Login().userChange, initialData: null),
           ChangeNotifierProvider<Login>(
             create: (context) => Login(),
-          )
+          ),
+          ChangeNotifierProvider<DatabaseProvider>(
+            create: (context) => DatabaseProvider(),
+          ),
         ],
         child: ResponsiveSizer(builder: (context, orientation, screenType) {
-          return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: const MyApp2(),
-              routes: {
-                '/lp': (context) => const LandingPage(),
-                '/hm': (context) => const HomePage(),
-                '/mp': (context) => const Mandi(),
-                '/rp': (context) => const RecomScreen(),
-                '/bnb': (context) => const BNB(),
-                '/signin': (context) => const LoginPage(),
-                '/register': (context) => const Register(),
-              });
+          return const MainApp();
         }));
+  }
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute:
+            context.read<Login>().currentUser == null ? '/sign_in' : '/bnb',
+        routes: {
+          '/lp': (context) => const LandingPage(),
+          '/hm': (context) => const HomePage(),
+          '/mp': (context) => const Mandi(),
+          '/rp': (context) => const RecomScreen(),
+          '/bnb': (context) => const BNB(),
+          '/sign_in': (context) => const LoginPage(),
+          '/register': (context) => const Register(),
+        });
   }
 }
 

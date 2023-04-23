@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
+import 'package:krishi_gyan/constants/exceptions.dart';
+import 'package:krishi_gyan/provider/loginProvider.dart';
+import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -36,7 +39,7 @@ class _RegisterState extends State<Register> {
               children: [
                 Text(
                   'Hello!',
-                  style: GoogleFonts.kufam(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 40,
                   ),
@@ -44,7 +47,7 @@ class _RegisterState extends State<Register> {
                 const SizedBox(height: 10),
                 Text(
                   'You have been missed!',
-                  style: GoogleFonts.bentham(
+                  style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
@@ -149,8 +152,8 @@ class _RegisterState extends State<Register> {
                   height: 50,
                   width: 375,
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Sign In'),
+                    onPressed: register,
+                    child: const Text('Register'),
                     style: ElevatedButton.styleFrom(
                       elevation: 40,
                       shape: RoundedRectangleBorder(
@@ -159,7 +162,7 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                 ),
-  
+
                 const SizedBox(height: 20),
 
                 Row(
@@ -169,7 +172,7 @@ class _RegisterState extends State<Register> {
                     SizedBox(
                       child: TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/bnb');
+                          Navigator.of(context).pop();
                         },
                         child: const Text(' SignIn Here!'),
                       ),
@@ -182,5 +185,39 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  void register() {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+    String name = nameController.text.trim();
+    String mobile = mobileController.text.trim();
+
+    if ([email, password, name, mobile].contains('')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please fill all the fields'),
+        ),
+      );
+    }
+
+    context
+        .read<Login>()
+        .register(email, password, name, mobile)
+        .then((value) => Navigator.of(context)
+            .pushNamedAndRemoveUntil("/bnb", (route) => false))
+        .catchError((error) {
+      String message = 'An unknown error occurred';
+      if (error is ResgistrationException) {
+        message = error.message;
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: Colors.red,
+        ),
+      );
+    });
   }
 }

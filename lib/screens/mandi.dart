@@ -1,14 +1,20 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:krishi_gyan/constants/colors.dart';
+import 'package:krishi_gyan/provider/databaseProvider.dart';
 import 'package:krishi_gyan/widgets/cards.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
 // import 'package:geocoder/geocoder.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../models/product.dart';
 
 enum WidgetMake { buy, sell }
 
@@ -23,6 +29,7 @@ class _MandiState extends State<Mandi> {
   WidgetMake b = WidgetMake.buy;
   final MapController _mapController = MapController();
   MapOptions _mapOptions = MapOptions();
+
   Position? position;
   String? add1;
   String? add2;
@@ -184,11 +191,10 @@ class _MandiState extends State<Mandi> {
               ),
               Positioned(
                 child: Text(add1 ?? "",
-                    style: GoogleFonts.rajdhani(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 16))),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 16)),
                 top: 80,
                 right: 35,
               ),
@@ -279,146 +285,230 @@ class _MandiState extends State<Mandi> {
   }
 
   Widget getSellForm(BuildContext context) {
-    return Column(children: [
-      Container(
-        width: MediaQuery.of(context).size.width * 0.9,
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          border: Border.all(color: darkGreen),
-          borderRadius: BorderRadius.circular(10.w),
-          // image: const DecorationImage(
-          //   image: AssetImage('assets/crop.png'),
-          // ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(left: 2.w),
-          child: ListTile(
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Image(
-                  image: AssetImage('assets/crop.png'),
-                  color: darkGreen,
-                ),
-              ],
-            ),
-            title: TextFormField(
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                labelText: 'Crop',
-              ),
-            ),
-          ),
-        ),
-      ),
-      SizedBox(height: 2.h),
-      Container(
-        width: MediaQuery.of(context).size.width * 0.9,
-        decoration: BoxDecoration(
-            color: Colors.transparent,
-            border: Border.all(color: darkGreen),
-            borderRadius: BorderRadius.circular(10.w)),
-        child: Padding(
-          padding: EdgeInsets.only(left: 2.w),
-          child: ListTile(
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                FaIcon(
-                  FontAwesomeIcons.moneyBill1Wave,
-                  color: darkGreen,
-                ),
-              ],
-            ),
-            title: TextFormField(
-              // controller: passwordController,
-
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                labelText: 'Price',
-              ),
-            ),
-          ),
-        ),
-      ),
-      SizedBox(height: 2.h),
-      Container(
-        width: MediaQuery.of(context).size.width * 0.9,
-        decoration: BoxDecoration(
-            color: Colors.transparent,
-            border: Border.all(color: darkGreen),
-            borderRadius: BorderRadius.circular(10.w)),
-        child: Padding(
-          padding: EdgeInsets.only(left: 2.w),
-          child: ListTile(
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                FaIcon(
-                  FontAwesomeIcons.weightScale,
-                  color: darkGreen,
-                ),
-              ],
-            ),
-            title: TextFormField(
-              // controller: passwordController,
-
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                labelText: 'Image',
-              ),
-            ),
-          ),
-        ),
-      ),
-      SizedBox(
-        width: 40.w,
-        child: ElevatedButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  content: const Text(
-                    'YOUR CROP is listed',
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 20,
-                    ),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text(
-                        'Confirm',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
-          child: const Text(' List'),
-          style: ElevatedButton.styleFrom(
-            elevation: 40,
-            backgroundColor: darkGreen,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.w),
-            ),
-          ),
-        ),
-      ),
-    ]);
+    return const SellForm();
   }
 
   Widget getbuycard() {
-    return Column(
-      children: const [
-        MyCards(),
-        MyCards(),
-        MyCards(),
-      ],
+    return StreamBuilder<List<Product>>(
+        stream: context.read<DatabaseProvider>().getProducts(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          var products = snapshot.data!;
+          if (products.isEmpty) {
+            return const Center(child: Text('No products found'));
+          }
+
+          return Column(
+              children: products
+                  .map((product) => ProductCard(product: product))
+                  .toList());
+        });
+  }
+}
+
+class SellForm extends StatefulWidget {
+  const SellForm({Key? key}) : super(key: key);
+
+  @override
+  State<SellForm> createState() => _SellFormState();
+}
+
+class _SellFormState extends State<SellForm> {
+  final _formKey = GlobalKey<FormState>();
+  String _cropName = "";
+  int _price = 0;
+  int _quantity = 0;
+
+  File? file;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(children: [
+        Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            border: Border.all(color: darkGreen),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: ListTile(
+              leading: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Image(
+                    image: AssetImage('assets/crop.png'),
+                    color: darkGreen,
+                  ),
+                ],
+              ),
+              title: TextFormField(
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'Crop',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                onSaved: (newValue) => _cropName = newValue!,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 20),
+        Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+          decoration: BoxDecoration(
+              color: Colors.transparent,
+              border: Border.all(color: darkGreen),
+              borderRadius: BorderRadius.circular(20.0)),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: ListTile(
+              leading: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  FaIcon(
+                    FontAwesomeIcons.moneyBill1Wave,
+                    color: darkGreen,
+                  ),
+                ],
+              ),
+              title: TextFormField(
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'Price',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  if (int.tryParse(value) == null) {
+                    return 'Please enter a valid number';
+                  }
+                  return null;
+                },
+                onSaved: (newValue) => _price = int.parse(newValue!),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 20),
+        Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+          decoration: BoxDecoration(
+              color: Colors.transparent,
+              border: Border.all(color: darkGreen),
+              borderRadius: BorderRadius.circular(20.0)),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: ListTile(
+              leading: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  FaIcon(
+                    FontAwesomeIcons.weightScale,
+                    color: darkGreen,
+                  ),
+                ],
+              ),
+              title: TextFormField(
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  labelText: 'Quantity',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  if (int.tryParse(value) == null) {
+                    return 'Please enter a valid number';
+                  }
+                  return null;
+                },
+                onSaved: (newValue) => _quantity = int.parse(newValue!),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 2.h),
+        SizedBox(
+          width: 30.w,
+          child: ElevatedButton(
+            onPressed: pickFile,
+            child: const Text('Add image'),
+            style: ElevatedButton.styleFrom(
+              elevation: 40,
+              backgroundColor: darkGreen,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 2.h),
+        SizedBox(
+          width: 30.w,
+          child: ElevatedButton(
+            onPressed: sellButtonPress,
+            child: const Text('Save'),
+            style: ElevatedButton.styleFrom(
+              elevation: 40,
+              backgroundColor: darkGreen,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ),
+      ]),
     );
+  }
+
+  void sellButtonPress() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    _formKey.currentState!.save();
+
+    if (file == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please select an image'),
+        ),
+      );
+      return;
+    }
+
+    await context
+        .read<DatabaseProvider>()
+        .createProduct(_cropName, _price, _quantity, file!);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Product Sold!'),
+      ),
+    );
+  }
+
+  Future<void> pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      setState(() {
+        file = File(result.files.single.path!);
+      });
+    }
   }
 }

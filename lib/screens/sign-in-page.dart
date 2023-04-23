@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
+import 'package:krishi_gyan/constants/exceptions.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/loginProvider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -30,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Text(
                   'Hello!',
-                  style: GoogleFonts.kufam(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 40,
                   ),
@@ -38,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 10),
                 Text(
                   'You have been missed!',
-                  style: GoogleFonts.bentham(
+                  style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
@@ -97,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 50,
                   width: 375,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: signIn,
                     child: const Text('Sign In'),
                     style: ElevatedButton.styleFrom(
                       elevation: 40,
@@ -135,10 +139,10 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text('Not a Member? '),
-                     SizedBox(
+                    SizedBox(
                       child: TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/bnb');
+                          Navigator.pushNamed(context, '/register');
                         },
                         child: const Text(' Register Here!'),
                       ),
@@ -156,8 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                           alignment: Alignment.topCenter,
                           height: 40,
                           child: IconButton(
-                            onPressed: () =>
-                                Navigator.of(context).pushNamed('/lp'),
+                            onPressed: () {},
                             icon: const Icon(
                               Icons.facebook,
                               size: 50,
@@ -172,9 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 60,
                           alignment: Alignment.center,
                           child: IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamed('/lp');
-                            },
+                            onPressed: () {},
                             icon: const FaIcon(
                               FontAwesomeIcons.google,
                               size: 45,
@@ -191,5 +192,39 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void signIn() {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please fill all the fields'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    context
+        .read<Login>()
+        .signIn(email, password)
+        .then((value) => Navigator.of(context)
+            .pushNamedAndRemoveUntil("/bnb", (route) => false))
+        .catchError((error) {
+      String message = "An unknown error occurred";
+      if (error is SignInException) {
+        message = error.message;
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: Colors.red,
+        ),
+      );
+    });
   }
 }
