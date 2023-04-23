@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:krishi_gyan/constants/colors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MyCards extends StatefulWidget {
   const MyCards({Key? key}) : super(key: key);
@@ -12,73 +13,75 @@ class _MyCardsState extends State<MyCards> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      margin: const EdgeInsets.all(10),
-      height: size.height * 0.25,
+    return SizedBox(
+      // margin: const EdgeInsets.all(10),
+      height: size.height * 0.28,
       width: size.width * 0.8,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                border: Border.all(color: darkGreen),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(30),
-                ),
-                color: Colors.transparent,
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(5.w),
+            decoration: BoxDecoration(
+              border: Border.all(color: darkGreen),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10.w),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // FaIcon(FontAwesomeIcons.sellcast),
-                  const Icon(Icons.sell_sharp),
-                  Text(
-                    'Lorem ipsum',
-                    style: GoogleFonts.jost(color: Colors.black),
+              color: Colors.transparent,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // FaIcon(FontAwesomeIcons.sellcast),
+                // const Icon(Icons.sell_sharp,size: 10,),
+                Text(
+                  'Lorem ipsum',
+                  style: GoogleFonts.jost(color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                const Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.black,
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
 
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        'Lorem ipsum',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.black,
-                        ),
+                SizedBox(
+                  height: 1.h,
+                ),
+                Row(
+                  children: const [
+                    Text(
+                      'Lorem ipsum',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.black,
                       ),
-                      SizedBox(
-                        width: 15,
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      'Lorem ipsum',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.black,
                       ),
-                      Text(
-                        'Lorem ipsum',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  ElevatedButton(
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  height: 4.h,
+                  width: 20.w,
+                  child: ElevatedButton(
                     onPressed: () {
                       showDialog(
                         context: context,
@@ -108,12 +111,12 @@ class _MyCardsState extends State<MyCards> {
                       backgroundColor: darkGreen,
                     ),
                     child: const Text('BUY'),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

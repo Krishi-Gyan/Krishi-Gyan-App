@@ -4,11 +4,11 @@ import 'package:krishi_gyan/constants/colors.dart';
 import 'package:krishi_gyan/widgets/cards.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:geolocator/geolocator.dart';
 // import 'package:geocoder/geocoder.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 enum WidgetMake { buy, sell }
 
@@ -21,7 +21,7 @@ class Mandi extends StatefulWidget {
 
 class _MandiState extends State<Mandi> {
   WidgetMake b = WidgetMake.buy;
-  MapController _mapController = MapController();
+  final MapController _mapController = MapController();
   MapOptions _mapOptions = MapOptions();
   Position? position;
   String? add1;
@@ -53,7 +53,7 @@ class _MandiState extends State<Mandi> {
     }
     Position _position = await Geolocator.getCurrentPosition();
 
-    final LocationSettings locationSettings = LocationSettings(
+    const LocationSettings locationSettings = LocationSettings(
       accuracy: LocationAccuracy.best,
       distanceFilter: 100,
     );
@@ -61,7 +61,7 @@ class _MandiState extends State<Mandi> {
         .listen((Position _position) {
       setState(() {
         position = _position;
-        getAddress(_position!);
+        getAddress(_position);
       });
     });
     _onLocationChanged(_position);
@@ -78,6 +78,7 @@ class _MandiState extends State<Mandi> {
     );
   }
 
+  @override
   void initState() {
     super.initState();
     _determinePosition();
@@ -96,7 +97,7 @@ class _MandiState extends State<Mandi> {
   //   });
   // }
   Future<void> getAddress(Position position) async {
-    await placemarkFromCoordinates(position!.latitude, position!.longitude)
+    await placemarkFromCoordinates(position.latitude, position.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
       setState(() {
@@ -118,18 +119,18 @@ class _MandiState extends State<Mandi> {
         children: [
           TileLayer(
             urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            subdomains: ['a', 'b', 'c'],
+            subdomains: const ['a', 'b', 'c'],
             maxZoom: 25,
           ),
           MarkerLayer(
             markers: position != null
                 ? [
                     Marker(
-                      width: 80.0,
-                      height: 80.0,
+                      width: 80.w,
+                      height: 80.h,
                       point: LatLng(position!.latitude, position!.longitude),
                       builder: (ctx) => Container(
-                        child: Icon(Icons.location_on_sharp),
+                        child: const Icon(Icons.location_on_sharp),
                       ),
                     ),
                   ]
@@ -170,21 +171,21 @@ class _MandiState extends State<Mandi> {
                 // ),
               ),
               Positioned(
-                top: 120,
+                top: 30,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30.0),
                   child: Container(
                     child: flutterMap,
-                    height: 250,
-                    width: 300,
+                    height: 38.h,
+                    width: 90.w,
                     alignment: Alignment.center,
                   ),
                 ),
               ),
               Positioned(
-                child: Text("${add1 ?? ""}",
+                child: Text(add1 ?? "",
                     style: GoogleFonts.rajdhani(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             color: Colors.white,
                             fontStyle: FontStyle.normal,
                             fontSize: 16))),
@@ -197,15 +198,15 @@ class _MandiState extends State<Mandi> {
               //   left: 100,
               // ),
             ]),
-            const SizedBox(
-              height: 25,
+            SizedBox(
+              height: 2.h,
             ),
             Container(
-              margin: const EdgeInsets.all(15),
-              decoration: const BoxDecoration(
+              margin: EdgeInsets.all(1.5.h),
+              decoration: BoxDecoration(
                 color: lightGreen, //color
                 borderRadius: BorderRadius.all(
-                  Radius.circular(30),
+                  Radius.circular(10.w),
                 ),
               ),
               height: size.height * 0.5,
@@ -213,6 +214,7 @@ class _MandiState extends State<Mandi> {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
+                    SizedBox(height: 0.9.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -229,8 +231,8 @@ class _MandiState extends State<Mandi> {
                                       ? Colors.black
                                       : Colors.black54)),
                         ),
-                        const SizedBox(
-                          width: 100,
+                        SizedBox(
+                          width: 30.w,
                         ),
                         TextButton(
                           onPressed: () {
@@ -249,8 +251,8 @@ class _MandiState extends State<Mandi> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: 1.h,
                     ),
                     Container(
                       child: getCustomContainer(),
@@ -283,13 +285,13 @@ class _MandiState extends State<Mandi> {
         decoration: BoxDecoration(
           color: Colors.transparent,
           border: Border.all(color: darkGreen),
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(10.w),
           // image: const DecorationImage(
           //   image: AssetImage('assets/crop.png'),
           // ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 20.0),
+          padding: EdgeInsets.only(left: 2.w),
           child: ListTile(
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -309,15 +311,15 @@ class _MandiState extends State<Mandi> {
           ),
         ),
       ),
-      const SizedBox(height: 20),
+      SizedBox(height: 2.h),
       Container(
         width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
             color: Colors.transparent,
             border: Border.all(color: darkGreen),
-            borderRadius: BorderRadius.circular(20.0)),
+            borderRadius: BorderRadius.circular(10.w)),
         child: Padding(
-          padding: const EdgeInsets.only(left: 20.0),
+          padding: EdgeInsets.only(left: 2.w),
           child: ListTile(
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -339,15 +341,15 @@ class _MandiState extends State<Mandi> {
           ),
         ),
       ),
-      const SizedBox(height: 20),
+      SizedBox(height: 2.h),
       Container(
         width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
             color: Colors.transparent,
             border: Border.all(color: darkGreen),
-            borderRadius: BorderRadius.circular(20.0)),
+            borderRadius: BorderRadius.circular(10.w)),
         child: Padding(
-          padding: const EdgeInsets.only(left: 20.0),
+          padding: EdgeInsets.only(left: 2.w),
           child: ListTile(
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -370,7 +372,7 @@ class _MandiState extends State<Mandi> {
         ),
       ),
       SizedBox(
-        width: 100,
+        width: 40.w,
         child: ElevatedButton(
           onPressed: () {
             showDialog(
@@ -402,7 +404,7 @@ class _MandiState extends State<Mandi> {
             elevation: 40,
             backgroundColor: darkGreen,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(5.w),
             ),
           ),
         ),

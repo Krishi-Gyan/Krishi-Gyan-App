@@ -56,8 +56,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           return GestureDetector(
             onTap: () => _controller.animateToPage(entry.key),
             child: Container(
-              width: 12.0,
-              height: 12.0,
+              // width: 11.w,
+              // height: 6.h,
               margin:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
               decoration: BoxDecoration(

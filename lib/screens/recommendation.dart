@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:krishi_gyan/constants/colors.dart';
 import 'package:menu_button/menu_button.dart';
 import '../widgets/ImageCarousel.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 const List<String> keys1 = ['One', 'Two', 'Three', 'Four'];
 const List<String> keys2 = ['One', 'Two', 'Three', 'Four'];
@@ -47,127 +48,131 @@ class _RecommendationState extends State<Recommendation> {
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: Center(
-          child: Column(
-            children: [
-              Container(
-                height: size.height * 0.30,
-                width: size.width,
-                decoration: const BoxDecoration(
-                  color: lightGreen,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(40),
-                    bottomRight: Radius.circular(40),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 1.0, // soften the shadow
-                      spreadRadius: 1.0, //extend the shadow
-                      offset: Offset(
-                        5.0,
-                        5.0,
-                      ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                Container(
+                  height: size.height * 0.30,
+                  width: size.width,
+                  decoration: const BoxDecoration(
+                    color: lightGreen,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(40),
+                      bottomRight: Radius.circular(40),
                     ),
-                  ],
-                ),
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 80,
-                      ),
-                      Row(
-                        children: const [
-                          SizedBox(
-                            width: 180,
-                          ),
-                          Text(
-                            'city name',
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text(
-                        '32 c',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 50,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 1.0, // soften the shadow
+                        spreadRadius: 1.0, //extend the shadow
+                        offset: Offset(
+                          5.0,
+                          5.0,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: const [
-                          Text(
-                            'Humidity',
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            'Moisture',
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text(
-                            'Air Pollution',
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Column(
-                children: items.map((e) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: MenuButton<String>(
-                      child: MenuButtonContainer(containername: e),
-                      items: keys1,
-                      itemBuilder: (String value) => Container(
-                        width: 300,
-                        height: 40,
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 0.0, horizontal: 16),
-                        child: Text(value),
-                      ),
-                      toggledChild: MenuButtonContainer(containername: e),
-                      onItemSelected: (String value) {
-                        setState(() {
-                          e = value;
-                        });
-                      },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 9.h,
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 50.w,
+                            ),
+                            const Text(
+                              'city name',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          '32 c',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30.sp,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 0.9.h,
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              'Humidity',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8.w,
+                            ),
+                            const Text(
+                              'Moisture',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8.w,
+                            ),
+                            const Text(
+                              'Air Pollution',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  );
-                }).toList(),
-              ),
-              CarouselWithIndicatorDemo()
-            ],
+                  ),
+                ),
+                SizedBox(
+                  height: 3.h,
+                ),
+                Column(
+                  children: items.map((e) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: MenuButton<String>(
+                        child: MenuButtonContainer(containername: e),
+                        items: keys1,
+                        itemBuilder: (String value) => Container(
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 0.0, horizontal: 16),
+                          child: Text(value),
+                        ),
+                        toggledChild: MenuButtonContainer(containername: e),
+                        onItemSelected: (String value) {
+                          setState(() {
+                            e = value;
+                          });
+                        },
+                      ),
+                    );
+                  }).toList(),
+                ),
+                SizedBox(
+                  height: 1.h,
+                ),
+                SizedBox(
+                  height: 60.h,
+                  width: 60.w,
+                  child: CarouselWithIndicatorDemo(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
