@@ -14,7 +14,6 @@ class Login with ChangeNotifier {
   }
 
   User? get currentUser => auth.currentUser;
-  
 
   Future<User> register(
       String email, String password, String name, String mobile) async {
@@ -47,9 +46,10 @@ class Login with ChangeNotifier {
     }
   }
 
-  Future signOutFunction() async {
+  Future signOutFunction() async{
     try {
-      return await auth.signOut();
+ 
+      return await (auth.signOut());
     } catch (e) {
       throw Exception('');
     }

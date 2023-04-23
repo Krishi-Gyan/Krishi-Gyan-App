@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:krishi_gyan/main.dart';
+import 'package:krishi_gyan/provider/loginProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -247,6 +250,22 @@ class _AccountPageState extends State<AccountPage> {
                     ),
                   );
                 }).toList()),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  print("hitting");
+                  context
+                      .read<Login>()
+                      .signOutFunction()
+                      .whenComplete(() => Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainApp(),
+                          ),
+                          (route) => false));
+                },
+                child: Text("Logout"),
+                style: ElevatedButton.styleFrom(backgroundColor: darkGreen),
               ),
             ],
           ),

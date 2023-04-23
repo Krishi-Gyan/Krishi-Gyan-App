@@ -50,19 +50,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute:
-            context.read<Login>().currentUser == null ? '/sign_in' : '/bnb',
-        routes: {
-          '/lp': (context) => const LandingPage(),
-          '/hm': (context) => const HomePage(),
-          '/mp': (context) => const Mandi(),
-          '/rp': (context) => const RecomScreen(),
-          '/bnb': (context) => const BNB(),
-          '/sign_in': (context) => const LoginPage(),
-          '/register': (context) => const Register(),
-        });
+    return Consumer<User?>(
+      builder: (context, value, child) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          initialRoute: value == null ? '/sign_in' : '/bnb',
+          routes: {
+            '/lp': (context) => const LandingPage(),
+            '/hm': (context) => const HomePage(),
+            '/mp': (context) => const Mandi(),
+            '/rp': (context) => const RecomScreen(),
+            '/bnb': (context) => const BNB(),
+            '/sign_in': (context) => const LoginPage(),
+            '/register': (context) => const Register(),
+          }),
+    );
   }
 }
 
