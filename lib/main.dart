@@ -11,8 +11,10 @@ import 'screens/mandi.dart';
 import './bottom_navigation.dart';
 import './provider/loginProvider.dart';
 import 'firebase_options.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -24,26 +26,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        StreamProvider<User?>(
-            create: (context) => Login().userChange, initialData: null),
-        ChangeNotifierProvider<Login>(
-          create: (context) => Login(),
-        )
-      ],
-      child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: const MyApp2(),
-          routes: {
-            '/lp': (context) => const LandingPage(),
-            '/hm': (context) => const HomePage(),
-            '/mp': (context) => const Mandi(),
-            '/rp': (context) => const RecomScreen(),
-            '/bnb': (context) => const BNB(),
-            '/signin': (context) => const LoginPage(),
-            '/register': (context) => const Register(),
-          }),
-    );
+        providers: [
+          StreamProvider<User?>(
+              create: (context) => Login().userChange, initialData: null),
+          ChangeNotifierProvider<Login>(
+            create: (context) => Login(),
+          )
+        ],
+        child: ResponsiveSizer(builder: (context, orientation, screenType) {
+          return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: const MyApp2(),
+              routes: {
+                '/lp': (context) => const LandingPage(),
+                '/hm': (context) => const HomePage(),
+                '/mp': (context) => const Mandi(),
+                '/rp': (context) => const RecomScreen(),
+                '/bnb': (context) => const BNB(),
+                '/signin': (context) => const LoginPage(),
+                '/register': (context) => const Register(),
+              });
+        }));
   }
 }
 

@@ -5,6 +5,7 @@ import 'package:krishi_gyan/screens/recom_screen.dart';
 
 import 'screens/account_page.dart';
 import 'screens/mandi.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class BNB extends StatefulWidget {
   const BNB({Key? key}) : super(key: key);
