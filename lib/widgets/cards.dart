@@ -19,7 +19,7 @@ class _ProductCardState extends State<ProductCard> {
     final size = MediaQuery.of(context).size;
     return SizedBox(
       // margin: const EdgeInsets.all(10),
-      height: size.height * 0.28,
+      height: size.height * 0.22,
       width: size.width * 0.8,
       child: Column(
         children: [
@@ -31,83 +31,107 @@ class _ProductCardState extends State<ProductCard> {
                 Radius.circular(10.w),
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                // FaIcon(FontAwesomeIcons.sellcast),
-                const Icon(Icons.sell_sharp),
-                Text(
-                  widget.product.name,
-                  style: const TextStyle(color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: Image.network(widget.product.imageLink)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // FaIcon(FontAwesomeIcons.sellcast),
+                    Icon(
+                      Icons.sell_sharp,
+                      size: 20.sp,
+                    ),
+                    Text(
+                      widget.product.name,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 0.3.h,
+                    ),
 
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(children: [
-                  Text(
-                    "\$" + widget.product.price.toString(),
-                    style: const TextStyle(
-                        fontSize: 10,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Text(
-                    widget.product.quantity.toString(),
-                    style: const TextStyle(
-                        fontSize: 10,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300),
-                  ),
-                ]),
+                    Row(children: [
+                      Text(
+                        "₹" + widget.product.price.toString(),
+                        style: TextStyle(
+                            fontSize: 17.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      SizedBox(
+                        width: 7.w,
+                      ),
+                      Text(
+                        widget.product.quantity.toString(),
+                        style: TextStyle(
+                            fontSize: 15.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ]),
 
-                const SizedBox(
-                  height: 15,
-                ),
-                SizedBox(
-                  height: 4.h,
-                  width: 20.w,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Icon(Icons.numbers),
-                            content: const TextField(
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                labelText: 'Enter the Quantity',
-                              ),
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text(
-                                  'Confirm',
-                                  style: TextStyle(color: Colors.black),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    SizedBox(
+                      height: 4.h,
+                      width: 20.w,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Icon(Icons.numbers),
+                                content: TextField(
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                      labelText: 'Enter the Quantity',
+                                      labelStyle: TextStyle(fontSize: 16.sp)),
                                 ),
-                              ),
-                            ],
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text(
+                                      'Confirm',
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 16.sp),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
                           );
                         },
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: darkGreen,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: darkGreen,
+                        ),
+                        child: Text(
+                          'BUY',
+                          style: TextStyle(fontSize: 16.sp),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: 20.w,
+                ),
+                Container(
+                  height: 10.h,
+                  width: 22.w,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: Image.network(widget.product.imageLink).image,
+                      fit: BoxFit.cover,
                     ),
-                    child: const Text('BUY'),
+                    // child: Align(
+                    //     alignment: Alignment.centerRight,
+                    //     child: Image.network(widget.product.imageLink),
                   ),
-                )
+                ),
               ],
             ),
           ),

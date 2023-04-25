@@ -29,21 +29,21 @@ class _AccountPageState extends State<AccountPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Center(
+          title: Center(
             child: Text(
               'Account',
               style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-              ),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20.sp),
             ),
           ),
           backgroundColor: darkGreen,
           elevation: 0,
           automaticallyImplyLeading: false,
-          shape: const RoundedRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(50),
+              bottom: Radius.circular(50.sp),
             ),
           ),
         ),
@@ -54,15 +54,15 @@ class _AccountPageState extends State<AccountPage> {
                 height: 4.h,
               ),
               Container(
-                height: 30.h,
+                height: 28.h,
                 width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: lightGreen,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
+                    topLeft: Radius.circular(30.sp),
+                    topRight: Radius.circular(30.sp),
                   ),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
                       blurRadius: 1.0, // soften the shadow
@@ -79,20 +79,19 @@ class _AccountPageState extends State<AccountPage> {
                   child: Column(
                     children: [
                       Container(
-                        height: 20.h,
+                        height: 19.h,
                         width: MediaQuery.of(context).size.width * 0.8,
-                        padding: const EdgeInsets.all(10),
-                        decoration: const BoxDecoration(
+                        padding: EdgeInsets.all(15.sp),
+                        decoration: BoxDecoration(
                           color: darkGreen,
                           borderRadius: BorderRadius.all(
-                            Radius.circular(20),
+                            Radius.circular(20.sp),
                           ),
                         ),
-                        child: const Text(
+                        child: Text(
                           'Soil Status',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 16.sp),
                         ),
                       ),
                     ],
@@ -100,15 +99,15 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
               Container(
-                height: 45.h,
+                height: 42.h,
                 width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(20.sp),
+                    topRight: Radius.circular(20.sp),
                   ),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
                       blurRadius: 1.0, // soften the shadow
@@ -133,11 +132,17 @@ class _AccountPageState extends State<AccountPage> {
                               padding: EdgeInsets.all(2.w),
                               child: Row(
                                 children: [
-                                  const Text('Name: '),
+                                  Text(
+                                    'Name: ',
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                   SizedBox(
                                     width: 2.w,
                                   ),
-                                  Text(e['name']),
+                                  Text(
+                                    e['name'],
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                 ],
                               ),
                             ),
@@ -153,11 +158,17 @@ class _AccountPageState extends State<AccountPage> {
                               padding: EdgeInsets.all(2.w),
                               child: Row(
                                 children: [
-                                  const Text('Mobile No.: '),
+                                  Text(
+                                    'Mobile No.: ',
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                   SizedBox(
                                     width: 2.w,
                                   ),
-                                  Text(e['mobile']),
+                                  Text(
+                                    e['mobile'],
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                 ],
                               ),
                             ),
@@ -173,11 +184,17 @@ class _AccountPageState extends State<AccountPage> {
                               padding: EdgeInsets.all(2.w),
                               child: Row(
                                 children: [
-                                  const Text('Location: '),
+                                  Text(
+                                    'Location: ',
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                   SizedBox(
                                     width: 2.w,
                                   ),
-                                  Text(e['location']),
+                                  Text(
+                                    e['location'],
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                 ],
                               ),
                             ),
@@ -193,11 +210,17 @@ class _AccountPageState extends State<AccountPage> {
                               padding: EdgeInsets.all(2.w),
                               child: Row(
                                 children: [
-                                  const Text('Crop Name: '),
+                                  Text(
+                                    'Crop Name: ',
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                   SizedBox(
                                     width: 2.w,
                                   ),
-                                  Text(e['crop']),
+                                  Text(
+                                    e['crop'],
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                 ],
                               ),
                             ),
@@ -213,11 +236,17 @@ class _AccountPageState extends State<AccountPage> {
                               padding: EdgeInsets.all(2.w),
                               child: Row(
                                 children: [
-                                  const Text('Soil Moisture: '),
+                                  Text(
+                                    'Soil Moisture: ',
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                   SizedBox(
                                     width: 2.w,
                                   ),
-                                  Text(e['soilMoisture']),
+                                  Text(
+                                    e['soilMoisture'],
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                 ],
                               ),
                             ),
@@ -233,11 +262,17 @@ class _AccountPageState extends State<AccountPage> {
                               padding: EdgeInsets.all(2.w),
                               child: Row(
                                 children: [
-                                  const Text('Nitrogen Content: '),
+                                  Text(
+                                    'Nitrogen Content: ',
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                   SizedBox(
                                     width: 2.w,
                                   ),
-                                  Text(e['nitrogenContent']),
+                                  Text(
+                                    e['nitrogenContent'],
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
                                 ],
                               ),
                             ),
@@ -260,11 +295,14 @@ class _AccountPageState extends State<AccountPage> {
                       .whenComplete(() => Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MainApp(),
+                            builder: (context) => const MainApp(),
                           ),
                           (route) => false));
                 },
-                child: Text("Logout"),
+                child: Text(
+                  "Logout",
+                  style: TextStyle(fontSize: 16.sp),
+                ),
                 style: ElevatedButton.styleFrom(backgroundColor: darkGreen),
               ),
             ],

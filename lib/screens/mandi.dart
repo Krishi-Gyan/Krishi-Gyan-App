@@ -9,7 +9,6 @@ import 'package:krishi_gyan/widgets/cards.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
-// import 'package:geocoder/geocoder.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -18,7 +17,6 @@ import '../models/product.dart';
 
 enum WidgetMake { buy, sell }
 
-//
 class Mandi extends StatefulWidget {
   const Mandi({Key? key}) : super(key: key);
   @override
@@ -92,17 +90,6 @@ class _MandiState extends State<Mandi> {
     //getAddress();
   }
 
-  //  getaddress() async {
-  //   // final coordinates = new Coordinates(position!.latitude, position!.longitude);
-  //   // var address =
-  //   //     await Geocoder.local.findAddressesFromCoordinates(coordinates);
-  //   List<Placemark> placemarks = await placemarkFromCoordinates(
-  //      position!.latitude.toDouble(), position!.longitude.toDouble());
-  //   setState(() {
-  //     add1 = placemarks.first.locality.toString();
-  //     add2 = placemarks[0].toString();
-  //   });
-  // }
   Future<void> getAddress(Position position) async {
     await placemarkFromCoordinates(position.latitude, position.longitude)
         .then((List<Placemark> placemarks) {
@@ -118,8 +105,6 @@ class _MandiState extends State<Mandi> {
 
   @override
   Widget build(BuildContext context) {
-    // widgetmake s = widgetmake.sell;
-
     FlutterMap flutterMap = FlutterMap(
         mapController: _mapController,
         options: _mapOptions,
@@ -145,7 +130,7 @@ class _MandiState extends State<Mandi> {
           )
         ]);
 
-    String datetime = DateTime.now().toString();
+    // String datetime = DateTime.now().toString();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -155,11 +140,11 @@ class _MandiState extends State<Mandi> {
               Container(
                 height: size.height * 0.45,
                 width: size.width,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     color: darkGreen, //color
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(50),
-                        bottomRight: Radius.circular(50))),
+                        bottomLeft: Radius.circular(10.w),
+                        bottomRight: Radius.circular(10.w))),
 
                 // child: Align(
                 //   alignment: Alignment.centerLeft,
@@ -178,7 +163,7 @@ class _MandiState extends State<Mandi> {
                 // ),
               ),
               Positioned(
-                top: 30,
+                top: 3.h,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30.0),
                   child: Container(
@@ -191,12 +176,12 @@ class _MandiState extends State<Mandi> {
               ),
               Positioned(
                 child: Text(add1 ?? "",
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontStyle: FontStyle.normal,
-                        fontSize: 16)),
-                top: 80,
-                right: 35,
+                        fontSize: 16.sp)),
+                top: 9.h,
+                right: 20.w,
               ),
               // Positioned(
               //   child: Text("$position"),
@@ -232,7 +217,7 @@ class _MandiState extends State<Mandi> {
                           },
                           child: Text("Buy",
                               style: TextStyle(
-                                  fontSize: 25,
+                                  fontSize: 23.sp,
                                   color: (b == WidgetMake.buy)
                                       ? Colors.black
                                       : Colors.black54)),
@@ -249,7 +234,7 @@ class _MandiState extends State<Mandi> {
                           child: Text(
                             "Sell",
                             style: TextStyle(
-                                fontSize: 25,
+                                fontSize: 23.sp,
                                 color: (b == WidgetMake.sell)
                                     ? Colors.black
                                     : Colors.black54),
@@ -299,7 +284,12 @@ class _MandiState extends State<Mandi> {
           }
           var products = snapshot.data!;
           if (products.isEmpty) {
-            return const Center(child: Text('No products found'));
+            return Center(
+              child: Text(
+                'No products found',
+                style: TextStyle(fontSize: 16.sp),
+              ),
+            );
           }
 
           return Column(
@@ -335,10 +325,10 @@ class _SellFormState extends State<SellForm> {
           decoration: BoxDecoration(
             color: Colors.transparent,
             border: Border.all(color: darkGreen),
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(20.sp),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.only(left: 20.sp),
             child: ListTile(
               leading: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -365,15 +355,15 @@ class _SellFormState extends State<SellForm> {
             ),
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: 2.h),
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
               color: Colors.transparent,
               border: Border.all(color: darkGreen),
-              borderRadius: BorderRadius.circular(20.0)),
+              borderRadius: BorderRadius.circular(20.sp)),
           child: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.only(left: 20.sp),
             child: ListTile(
               leading: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -403,15 +393,15 @@ class _SellFormState extends State<SellForm> {
             ),
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: 2.h),
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
               color: Colors.transparent,
               border: Border.all(color: darkGreen),
-              borderRadius: BorderRadius.circular(20.0)),
+              borderRadius: BorderRadius.circular(20.sp)),
           child: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.only(left: 20.sp),
             child: ListTile(
               leading: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -446,12 +436,15 @@ class _SellFormState extends State<SellForm> {
           width: 30.w,
           child: ElevatedButton(
             onPressed: pickFile,
-            child: const Text('Add image'),
+            child: Text(
+              'Add image',
+              style: TextStyle(fontSize: 15.sp),
+            ),
             style: ElevatedButton.styleFrom(
               elevation: 40,
               backgroundColor: darkGreen,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.sp),
               ),
             ),
           ),
@@ -461,12 +454,15 @@ class _SellFormState extends State<SellForm> {
           width: 30.w,
           child: ElevatedButton(
             onPressed: sellButtonPress,
-            child: const Text('Save'),
+            child: Text(
+              'Save',
+              style: TextStyle(fontSize: 15.sp),
+            ),
             style: ElevatedButton.styleFrom(
               elevation: 40,
               backgroundColor: darkGreen,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.sp),
               ),
             ),
           ),
