@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
-import '.w./constants/colors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+import '../constants/colors.dart';
 
 class KrishiGyan extends StatefulWidget {
   const KrishiGyan({Key? key}) : super(key: key);
@@ -17,12 +16,13 @@ class _KrishiGyanState extends State<KrishiGyan> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Center(
+          title: Center(
             child: Text(
               'Krishi Gyan',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
+                fontSize: 20.sp,
               ),
             ),
           ),
@@ -30,9 +30,9 @@ class _KrishiGyanState extends State<KrishiGyan> {
           toolbarHeight: size.height * 0.05,
           elevation: 0,
           automaticallyImplyLeading: false,
-          shape: const RoundedRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(50),
+              bottom: Radius.circular(50.sp),
             ),
           ),
         ),
@@ -46,10 +46,10 @@ class _KrishiGyanState extends State<KrishiGyan> {
                 decoration: BoxDecoration(
                   color: lightGreen,
                   borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(30.0),
-                    bottomLeft: Radius.circular(30.0),
+                    bottomRight: Radius.circular(30.sp),
+                    bottomLeft: Radius.circular(30.sp),
                   ),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
                       blurRadius: 1.0, // soften the shadow
@@ -63,21 +63,21 @@ class _KrishiGyanState extends State<KrishiGyan> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 10.0),
+                padding: EdgeInsets.only(top: 2.h),
                 child: Text(
                   "Krishi Gyan",
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18.sp),
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(3.w),
                 height: size.height * 0.25,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: EdgeInsets.all(6.w),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
                         child: RichText(
@@ -87,22 +87,24 @@ class _KrishiGyanState extends State<KrishiGyan> {
                               TextSpan(
                                 text: 'HEADING\n',
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 18.sp,
                                   color: Colors.black,
                                 ),
                               ),
                               TextSpan(
                                 text:
                                     'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                style: TextStyle(),
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                ),
                               )
                             ],
                           ),
                         ),
                         decoration: BoxDecoration(
                           color: lightGreen,
-                          borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
+                          borderRadius: BorderRadius.circular(25.sp),
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.grey,
                               blurRadius: 1.0, // soften the shadow
@@ -115,14 +117,14 @@ class _KrishiGyanState extends State<KrishiGyan> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       Container(
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
                         child: RichText(
                           textAlign: TextAlign.center,
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
                                 text: 'HEADING\n',
@@ -142,7 +144,7 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.grey,
                               blurRadius: 1.0, // soften the shadow
@@ -155,14 +157,14 @@ class _KrishiGyanState extends State<KrishiGyan> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       Container(
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
                         child: RichText(
                           textAlign: TextAlign.center,
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
                                 text: 'HEADING\n',
@@ -182,7 +184,7 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.grey,
                               blurRadius: 1.0, // soften the shadow
@@ -199,7 +201,7 @@ class _KrishiGyanState extends State<KrishiGyan> {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 10.0),
                 child: Text(
                   "Government Schemes",
@@ -219,7 +221,7 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         width: size.width * 0.7,
                         child: RichText(
                           textAlign: TextAlign.center,
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
                                 text: 'HEADING\n',
@@ -239,7 +241,7 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.grey,
                               blurRadius: 1.0, // soften the shadow
@@ -252,14 +254,14 @@ class _KrishiGyanState extends State<KrishiGyan> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       Container(
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
                         child: RichText(
                           textAlign: TextAlign.center,
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
                                 text: 'HEADING\n',
@@ -279,7 +281,7 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.grey,
                               blurRadius: 1.0, // soften the shadow
@@ -292,14 +294,14 @@ class _KrishiGyanState extends State<KrishiGyan> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       Container(
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
                         child: RichText(
                           textAlign: TextAlign.center,
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
                                 text: 'HEADING\n',
@@ -319,7 +321,7 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.grey,
                               blurRadius: 1.0, // soften the shadow
