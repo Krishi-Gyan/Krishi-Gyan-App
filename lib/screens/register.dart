@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:krishi_gyan/constants/exceptions.dart';
 import 'package:krishi_gyan/provider/loginProvider.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -41,27 +42,30 @@ class _RegisterState extends State<Register> {
                   'Hello!',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 40,
+                    fontSize: 30.sp,
                   ),
                 ),
-                const SizedBox(height: 10),
+                 SizedBox(height: 1.5.h),
                 Text(
                   'You have been missed!',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 50),
+                 SizedBox(height: 6.h),
 
                 //name text
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
+                    height: 6.h,
+                    width: 100.w,
+
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(20.0)),
+                        borderRadius: BorderRadius.circular(20.0.mm)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextField(
@@ -75,16 +79,18 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                 SizedBox(height: 1.h),
 
                 //mobile text
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
+                    height: 6.h,
+                    width: 100.w,
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(20.0)),
+                        borderRadius: BorderRadius.circular(20.0.mm)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextFormField(
@@ -98,16 +104,18 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 1.h),
 
                 //email text
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
+                    height: 6.h,
+                    width: 100.w,
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(20.0)),
+                        borderRadius: BorderRadius.circular(20.0.mm)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextFormField(
@@ -121,16 +129,18 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                 SizedBox(height: 1.h),
 
                 //password text
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
+                    height: 6.h,
+                    width: 100.w,
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(20.0)),
+                        borderRadius: BorderRadius.circular(20.0.mm)),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextFormField(
@@ -145,12 +155,12 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                 SizedBox(height: 3.h),
 
                 //sign in
                 SizedBox(
-                  height: 50,
-                  width: 375,
+                  height: 6.h,
+                  width: 90.w,
                   child: ElevatedButton(
                     onPressed: register,
                     child: const Text('Register'),
@@ -163,13 +173,14 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 3.h),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text('Already a member? '),
                     SizedBox(
+                      
                       child: TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();

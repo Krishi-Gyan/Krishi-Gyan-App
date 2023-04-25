@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:krishi_gyan/constants/exceptions.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+
 
 import '../provider/loginProvider.dart';
 
@@ -36,23 +38,25 @@ class _LoginPageState extends State<LoginPage> {
                   'Hello!',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 40,
+                    fontSize: 30.sp,
                   ),
                 ),
-                const SizedBox(height: 10),
+                 SizedBox(height: 3.h),
                 Text(
                   'You have been missed!',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 50),
+                 SizedBox(height: 6.h),
 
                 //email text
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
+                    height: 6.h,
+                    width: 100.w,
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
@@ -70,12 +74,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                SizedBox(height: 2.h),
 
                 //password text
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
+                    height: 6.h,
+                    width: 100.w,
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
@@ -94,19 +100,19 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 2.h),
 
                 //sign in
                 SizedBox(
-                  height: 50,
-                  width: 375,
+                  height: 6.h,
+                  width: 90.w,
                   child: ElevatedButton(
                     onPressed: signIn,
                     child: const Text('Sign In'),
                     style: ElevatedButton.styleFrom(
-                      elevation: 40,
+                      elevation: 14.sp,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.cm),
                       ),
                     ),
                   ),
@@ -131,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                 //     ),
                 //   ),
                 // ),
-                const SizedBox(height: 20),
+                SizedBox(height: 3.h),
 
                 //not a member
 
@@ -140,6 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const Text('Not a Member? '),
                     SizedBox(
+                     
                       child: TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/register');
@@ -158,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           margin: const EdgeInsets.all(10),
                           alignment: Alignment.topCenter,
-                          height: 40,
+                          height: 5.h,
                           child: IconButton(
                             onPressed: () {},
                             icon: const Icon(
@@ -167,18 +174,18 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          width: 20,
+                         SizedBox(
+                          width: 4.w,
                         ),
                         Container(
                           margin: const EdgeInsets.fromLTRB(10, 23, 10, 10),
-                          height: 60,
+                          height: 8.h,
                           alignment: Alignment.center,
                           child: IconButton(
                             onPressed: () {},
                             icon: const FaIcon(
                               FontAwesomeIcons.google,
-                              size: 45,
+                              size: 40,
                             ),
                           ),
                         ),
