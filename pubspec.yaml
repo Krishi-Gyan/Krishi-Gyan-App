@@ -43,6 +43,7 @@ dependencies:
   geocoding: ^2.1.0
   geolocator: ^9.0.2
   # google_fonts: ^3.0.1
+  google_fonts: ^4.0.4
   latlong2: ^0.8.1
   location: ^4.4.0
   menu_button: ^1.4.2+1

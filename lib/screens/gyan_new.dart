@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../constants/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class KrishiGyan extends StatefulWidget {
   const KrishiGyan({Key? key}) : super(key: key);
@@ -80,25 +81,27 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: EdgeInsets.all(6.w),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'HEADING\n',
-                                style: TextStyle(
-                                  fontSize: 18.sp,
-                                  color: Colors.black,
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'HEADING\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(
-                                text:
-                                    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                ),
-                              )
-                            ],
+                                TextSpan(
+                                  text:
+                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
+                                  style: GoogleFonts.inter(
+                                      fontSize: 16.sp, color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         decoration: BoxDecoration(
@@ -122,23 +125,26 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: const TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'HEADING\n',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'HEADING\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(
-                                text:
-                                    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                style: TextStyle(),
-                              )
-                            ],
+                                TextSpan(
+                                  text:
+                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         decoration: BoxDecoration(
@@ -162,23 +168,26 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: const TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'HEADING\n',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'HEADING\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(
-                                text:
-                                    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                style: TextStyle(),
-                              )
-                            ],
+                                TextSpan(
+                                  text:
+                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         decoration: BoxDecoration(
@@ -219,23 +228,26 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: const TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'HEADING\n',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'HEADING\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(
-                                text:
-                                    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                style: TextStyle(),
-                              )
-                            ],
+                                TextSpan(
+                                  text:
+                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         decoration: BoxDecoration(
@@ -259,23 +271,26 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: const TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'HEADING\n',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'HEADING\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(
-                                text:
-                                    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                style: TextStyle(),
-                              )
-                            ],
+                                TextSpan(
+                                  text:
+                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         decoration: BoxDecoration(
@@ -299,23 +314,26 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: const TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'HEADING\n',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'HEADING\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(
-                                text:
-                                    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                style: TextStyle(),
-                              )
-                            ],
+                                TextSpan(
+                                  text:
+                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         decoration: BoxDecoration(

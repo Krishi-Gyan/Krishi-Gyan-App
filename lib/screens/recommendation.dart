@@ -55,13 +55,13 @@ class _RecommendationState extends State<Recommendation> {
                 Container(
                   height: size.height * 0.30,
                   width: size.width,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: lightGreen,
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40),
+                      bottomLeft: Radius.circular(30.sp),
+                      bottomRight: Radius.circular(30.sp),
                     ),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,
                         blurRadius: 1.0, // soften the shadow
@@ -74,8 +74,8 @@ class _RecommendationState extends State<Recommendation> {
                     ],
                   ),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 20),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 30.sp, vertical: 20.sp),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -87,10 +87,11 @@ class _RecommendationState extends State<Recommendation> {
                             SizedBox(
                               width: 50.w,
                             ),
-                            const Text(
+                            Text(
                               'city name',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontSize: 16.sp,
                               ),
                             ),
                           ],
@@ -107,28 +108,31 @@ class _RecommendationState extends State<Recommendation> {
                         ),
                         Row(
                           children: [
-                            const Text(
+                            Text(
                               'Humidity',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontSize: 16.sp,
                               ),
                             ),
                             SizedBox(
                               width: 8.w,
                             ),
-                            const Text(
+                            Text(
                               'Moisture',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontSize: 16.sp,
                               ),
                             ),
                             SizedBox(
                               width: 8.w,
                             ),
-                            const Text(
+                            Text(
                               'Air Pollution',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontSize: 16.sp,
                               ),
                             ),
                           ],
@@ -149,8 +153,8 @@ class _RecommendationState extends State<Recommendation> {
                         items: keys1,
                         itemBuilder: (String value) => Container(
                           alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 0.0, horizontal: 16),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 0.0, horizontal: 16.sp),
                           child: Text(value),
                         ),
                         toggledChild: MenuButtonContainer(containername: e),
@@ -167,8 +171,8 @@ class _RecommendationState extends State<Recommendation> {
                   height: 1.h,
                 ),
                 SizedBox(
-                  height: 60.h,
-                  width: 60.w,
+                  height: 130.h,
+                  width: 130.w,
                   child: CarouselWithIndicatorDemo(),
                 ),
               ],
