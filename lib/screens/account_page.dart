@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import '../constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../widgets/graphCard.dart';
+
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
@@ -54,7 +56,6 @@ class _AccountPageState extends State<AccountPage> {
                 height: 4.h,
               ),
               Container(
-                height: 28.h,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: lightGreen,
@@ -79,21 +80,15 @@ class _AccountPageState extends State<AccountPage> {
                   child: Column(
                     children: [
                       Container(
-                        height: 19.h,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        padding: EdgeInsets.all(15.sp),
-                        decoration: BoxDecoration(
-                          color: darkGreen,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20.sp),
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          padding: const EdgeInsets.all(10),
+                          decoration: const BoxDecoration(
+                            color: darkGreen,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          'Soil Status',
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 16.sp),
-                        ),
-                      ),
+                          child: BarChartSample1()),
                     ],
                   ),
                 ),

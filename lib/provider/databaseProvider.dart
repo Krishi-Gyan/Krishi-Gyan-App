@@ -78,7 +78,8 @@ class DatabaseProvider extends ChangeNotifier {
     // Assuming that the user is logged in:
     final String buyerUuid = auth.currentUser!.uid;
 
-    await firestore
+ try {
+   await firestore
         .collection('market')
         .doc(productId)
         .update({'buyerUuid': buyerUuid});
@@ -86,5 +87,10 @@ class DatabaseProvider extends ChangeNotifier {
     await firestore.collection('users').doc(buyerUuid).update({
       "orderHistory": FieldValue.arrayUnion([productId])
     });
+   
+ } catch (e) {
+   
+ }
+   
   }
 }
