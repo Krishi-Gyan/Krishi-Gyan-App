@@ -1,119 +1,141 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 import 'package:krishi_gyan/constants/colors.dart';
+import 'package:krishi_gyan/models/product.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
-class MyCards extends StatefulWidget {
-  const MyCards({Key? key}) : super(key: key);
+class ProductCard extends StatefulWidget {
+  const ProductCard({Key? key, required this.product}) : super(key: key);
+
+  final Product product;
+
   @override
-  State<MyCards> createState() => _MyCardsState();
+  State<ProductCard> createState() => _ProductCardState();
 }
 
-class _MyCardsState extends State<MyCards> {
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      margin: const EdgeInsets.all(10),
-      height: size.height * 0.25,
+    return SizedBox(
+      // margin: const EdgeInsets.all(10),
+      height: size.height * 0.22,
       width: size.width * 0.8,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                border: Border.all(color: darkGreen),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(30),
-                ),
-                color: Colors.transparent,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // FaIcon(FontAwesomeIcons.sellcast),
-                  const Icon(Icons.sell_sharp),
-                  Text(
-                    'Lorem ipsum',
-                    style: GoogleFonts.jost(color: Colors.black),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        'Lorem ipsum',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.black,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Lorem ipsum',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Icon(Icons.numbers),
-                            content: const TextField(
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                labelText: 'Enter the Quantity',
-                              ),
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text(
-                                  'Confirm',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: darkGreen,
-                    ),
-                    child: const Text('BUY'),
-                  )
-                ],
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(5.w),
+            decoration: BoxDecoration(
+              border: Border.all(color: darkGreen),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10.w),
               ),
             ),
-          ],
-        ),
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // FaIcon(FontAwesomeIcons.sellcast),
+                    Icon(
+                      Icons.sell_sharp,
+                      size: 20.sp,
+                    ),
+                    Text(
+                      widget.product.name,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 0.3.h,
+                    ),
+
+                    Row(children: [
+                      Text(
+                        "₹" + widget.product.price.toString(),
+                        style: TextStyle(
+                            fontSize: 17.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      SizedBox(
+                        width: 7.w,
+                      ),
+                      Text(
+                        widget.product.quantity.toString(),
+                        style: TextStyle(
+                            fontSize: 15.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ]),
+
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    SizedBox(
+                      height: 4.h,
+                      width: 20.w,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Icon(Icons.numbers),
+                                content: TextField(
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                      labelText: 'Enter the Quantity',
+                                      labelStyle: TextStyle(fontSize: 16.sp)),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text(
+                                      'Confirm',
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 16.sp),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: darkGreen,
+                        ),
+                        child: Text(
+                          'BUY',
+                          style: TextStyle(fontSize: 16.sp),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: 20.w,
+                ),
+                Container(
+                  height: 10.h,
+                  width: 22.w,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: Image.network(widget.product.imageLink).image,
+                      fit: BoxFit.cover,
+                    ),
+                    // child: Align(
+                    //     alignment: Alignment.centerRight,
+                    //     child: Image.network(widget.product.imageLink),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

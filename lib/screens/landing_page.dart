@@ -19,9 +19,10 @@ class _LandingPageState extends State<LandingPage> {
   void reg() {
     context
         .read<Login>()
-        .register('test@gmail.com', "123456789", "test", "92928383748")
+        .register('test@gmail.com', "123456789", "test", "12345")
         .then((value) => null)
         .catchError((o) {});
+    Navigator.pushNamed(context, '/bnb');
   }
 
   @override
@@ -162,10 +163,7 @@ class _LandingPageState extends State<LandingPage> {
                   SizedBox(
                     width: 120,
                     child: MaterialButton(
-                      // onPressed: reg,
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/bnb');
-                      },
+                      onPressed: reg,
                       child: const Text(
                         'Submit',
                         style: TextStyle(color: Colors.white),
