@@ -64,12 +64,14 @@ class _MandiState extends State<Mandi> {
     );
     Geolocator.getPositionStream(locationSettings: locationSettings)
         .listen((Position _position) {
-      setState(() {
-        position = _position;
-        getAddress(_position);
-      });
+
+    });
+    setState(() {
+      position = _position;
     });
     _onLocationChanged(_position);
+    getAddress(_position);
+
   }
 
   void _onLocationChanged(Position _position) {
