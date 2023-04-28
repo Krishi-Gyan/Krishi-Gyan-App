@@ -73,71 +73,79 @@ class _RecommendationState extends State<Recommendation> {
                       ),
                     ],
                   ),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 30.sp, vertical: 20.sp),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 9.h,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 50.w,
-                            ),
-                            Text(
-                              'city name',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16.sp,
+                  child: Center(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 20.sp, vertical: 20.sp),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8),
+                                child: Text(
+                                  'city name',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.sp,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          '32 c',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30.sp,
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          height: 0.9.h,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'Humidity',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16.sp,
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 5.0),
+                              child: Text(
+                                '32 c',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30.sp,
+                                ),
                               ),
                             ),
-                            SizedBox(
-                              width: 8.w,
-                            ),
-                            Text(
-                              'Moisture',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16.sp,
+                          ),
+                          SizedBox(
+                            height: 0.9.h,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Humidity',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 8.w,
-                            ),
-                            Text(
-                              'Air Pollution',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16.sp,
+                              SizedBox(
+                                width: 8.w,
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              Text(
+                                'Moisture',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8.w,
+                              ),
+                              Text(
+                                'Air Pollution',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
