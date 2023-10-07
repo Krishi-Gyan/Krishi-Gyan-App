@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -78,19 +77,15 @@ class DatabaseProvider extends ChangeNotifier {
     // Assuming that the user is logged in:
     final String buyerUuid = auth.currentUser!.uid;
 
- try {
-   await firestore
-        .collection('market')
-        .doc(productId)
-        .update({'buyerUuid': buyerUuid});
+    try {
+      await firestore
+          .collection('market')
+          .doc(productId)
+          .update({'buyerUuid': buyerUuid});
 
-    await firestore.collection('users').doc(buyerUuid).update({
-      "orderHistory": FieldValue.arrayUnion([productId])
-    });
-   
- } catch (e) {
-   
- }
-   
+      await firestore.collection('users').doc(buyerUuid).update({
+        "orderHistory": FieldValue.arrayUnion([productId])
+      });
+    } catch (e) {}
   }
 }

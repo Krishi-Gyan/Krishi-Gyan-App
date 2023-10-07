@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class CarouselWithIndicatorDemo extends StatefulWidget {
+  const CarouselWithIndicatorDemo({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _CarouselWithIndicatorState();

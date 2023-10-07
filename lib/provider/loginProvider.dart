@@ -46,13 +46,8 @@ class Login with ChangeNotifier {
     }
   }
 
-  Future signOutFunction() async{
-    try {
- 
-      return await (auth.signOut());
-    } catch (e) {
-      throw Exception('');
-    }
+  Future<void> signOut() async {
+    await auth.signOut();
   }
 
   Future<User> signIn(String email, String password) async {
@@ -80,6 +75,23 @@ class Login with ChangeNotifier {
       }
       throw SignInException(message);
     }
+  }
+
+  Future<void> loginUsingPhoneNumber(
+      {required String phonenumber,
+      verificationCompleted,
+      verificationFailed,
+      codeSent,
+      codeAutoRetrievalTimeout}) async {
+    await FirebaseAuth.instance
+        .verifyPhoneNumber(
+          phoneNumber: phonenumber,
+          verificationCompleted: verificationCompleted,
+          verificationFailed: verificationFailed,
+          codeSent: codeSent,
+          codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
+        )
+        .onError((error, stackTrace) => throw error!);
   }
 
   void _createNewUserInFirestore(String name, String email, String mobile) {

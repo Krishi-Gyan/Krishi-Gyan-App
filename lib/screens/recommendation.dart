@@ -193,8 +193,8 @@ class _RecommendationState extends State<Recommendation> {
 }
 
 class MenuButtonContainer extends StatelessWidget {
-  String containername;
-  MenuButtonContainer({Key? key, required this.containername})
+  final String containername;
+  const MenuButtonContainer({Key? key, required this.containername})
       : super(key: key);
 
   @override

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:krishi_gyan/main.dart';
 import 'package:krishi_gyan/provider/loginProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -135,7 +134,7 @@ class _AccountPageState extends State<AccountPage> {
                                     width: 2.w,
                                   ),
                                   Text(
-                                    e['name'],
+                                    "(UID)${context.read<Login>().currentUser!.uid}",
                                     style: TextStyle(fontSize: 16.sp),
                                   ),
                                 ],
@@ -282,18 +281,18 @@ class _AccountPageState extends State<AccountPage> {
                 }).toList()),
               ),
               ElevatedButton(
-                onPressed: () {
-                  print("hitting");
-                  context
-                      .read<Login>()
-                      .signOutFunction()
-                      .whenComplete(() => Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MainApp(),
-                          ),
-                          (route) => false));
-                },
+                onPressed: () async => await context
+                    .read<Login>()
+                    .signOut()
+                    .onError(
+                      (error, _) => ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content:
+                              Text('Something went wrong while signing out...'),
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      ),
+                    ),
                 child: Text(
                   "Logout",
                   style: TextStyle(fontSize: 16.sp),
