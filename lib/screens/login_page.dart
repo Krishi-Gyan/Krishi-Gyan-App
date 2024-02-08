@@ -102,7 +102,13 @@ class _LogInState extends State<LogInUp> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
-                  onPressed: () async => await signInUsingPhoneNumber(),
+                  onPressed: () async {
+                    // await signInUsingPhoneNumber();
+                    Navigator.pushNamed(
+                      context,
+                      '/otp',
+                    );
+                  },
                   style: TextButton.styleFrom(
                     fixedSize: Size(37.w, 6.7.h),
                     backgroundColor: greenTitle,

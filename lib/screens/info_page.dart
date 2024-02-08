@@ -128,7 +128,12 @@ class _infoPageState extends State<infoPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/bnb',
+                          );
+                        },
                         style: TextButton.styleFrom(
                             fixedSize: Size(40.w, 7.h),
                             backgroundColor: greenTitle,

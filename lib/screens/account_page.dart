@@ -134,7 +134,7 @@ class _AccountPageState extends State<AccountPage> {
                                     width: 2.w,
                                   ),
                                   Text(
-                                    "(UID)${context.read<Login>().currentUser!.uid}",
+                                    "(UID)${context.read<Login>().currentUser?.uid ?? ''}",
                                     style: TextStyle(fontSize: 16.sp),
                                   ),
                                 ],
@@ -295,7 +295,7 @@ class _AccountPageState extends State<AccountPage> {
                     ),
                 child: Text(
                   "Logout",
-                  style: TextStyle(fontSize: 16.sp),
+                  style: TextStyle(fontSize: 16.sp, color: Colors.white),
                 ),
                 style: ElevatedButton.styleFrom(backgroundColor: darkGreen),
               ),
