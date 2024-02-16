@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:krishi_gyan/api.dart';
 import 'package:krishi_gyan/constants/colors.dart';
 import 'package:menu_button/menu_button.dart';
+import 'package:weather/weather.dart';
 import '../widgets/ImageCarousel.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -13,7 +16,7 @@ const List<String> items = [
   'Fertilizers',
   'Pesticides',
   'Irrigation Methods',
-  'Crops'
+  'Crops',
 ];
 
 class Recommendation extends StatefulWidget {
@@ -23,6 +26,20 @@ class Recommendation extends StatefulWidget {
 }
 
 class _RecommendationState extends State<Recommendation> {
+  final WeatherFactory _wf = WeatherFactory(openWeatherApiKey);
+  Weather? _weather;
+  String city = "delhi";
+
+  @override
+  void initState() {
+    super.initState();
+    _wf.currentWeatherByCityName(city).then((value) {
+      setState(() {
+        _weather = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -52,103 +69,156 @@ class _RecommendationState extends State<Recommendation> {
           child: Center(
             child: Column(
               children: [
-                Container(
-                  height: size.height * 0.30,
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    color: lightGreen,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30.sp),
-                      bottomRight: Radius.circular(30.sp),
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 1.0, // soften the shadow
-                        spreadRadius: 1.0, //extend the shadow
-                        offset: Offset(
-                          5.0,
-                          5.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.sp, vertical: 20.sp),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  'city name',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.sp,
-                                  ),
-                                ),
-                              ),
-                            ],
+                _weather == null
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Container(
+                        height: size.height * 0.30,
+                        width: size.width,
+                        decoration: BoxDecoration(
+                          color: lightGreen,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(30.sp),
+                            bottomRight: Radius.circular(30.sp),
                           ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 5.0),
-                              child: Text(
-                                '32 c',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30.sp,
-                                ),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 1.0, // soften the shadow
+                              spreadRadius: 1.0, //extend the shadow
+                              offset: Offset(
+                                5.0,
+                                5.0,
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 0.9.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Humidity',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
+                          ],
+                        ),
+                        child: Center(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20.sp, vertical: 20.sp),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            _weather?.areaName ?? "",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 18.sp,
+                                            ),
+                                          ),
+                                          Text(
+                                            _weather?.date != null
+                                                ? DateFormat('EEEE, dd-MM-yy')
+                                                    .format(_weather!.date!)
+                                                : "",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16.sp,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              SizedBox(
-                                width: 8.w,
-                              ),
-                              Text(
-                                'Moisture',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 5.0),
+                                    child: Text(
+                                      _weather?.temperature.toString() ?? "",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 25.sp,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 8.w,
-                              ),
-                              Text(
-                                'Air Pollution',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
+                                SizedBox(
+                                  height: 0.9.h,
                                 ),
-                              ),
-                            ],
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Humidity",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                          ),
+                                        ),
+                                        Text(
+                                          _weather?.humidity.toString() ?? "",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 8.w,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Wind Speed",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                          ),
+                                        ),
+                                        Text(
+                                          _weather?.windSpeed.toString() ?? "",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 8.w,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Cloudiness",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                          ),
+                                        ),
+                                        Text(
+                                          _weather?.cloudiness.toString() ?? "",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                ),
                 SizedBox(
                   height: 3.h,
                 ),

@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=C:\Users\Surinder Kumar\fvm\versions\stable
-FLUTTER_APPLICATION_PATH=D:\Mukal\Flutter Projects\Krishi-Gyan-App
+FLUTTER_ROOT=C:\development\sdks\flutter
+FLUTTER_APPLICATION_PATH=D:\flutter projects\krishi_gyan\Krishi Gyan Organization Clone\Krishi-Gyan-App
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
