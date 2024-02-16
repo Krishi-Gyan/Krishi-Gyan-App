@@ -18,8 +18,9 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   TextEditingController mobNoCont = TextEditingController();
   TextEditingController aadCont = TextEditingController();
-  TextEditingController addCont = TextEditingController();
+  TextEditingController cityCont = TextEditingController();
   TextEditingController nameCont = TextEditingController();
+  TextEditingController stateCont = TextEditingController();
 
   bool passwordVisible = false;
 
@@ -61,8 +62,9 @@ class _SignUpState extends State<SignUp> {
               '/otp',
               arguments: {
                 'verificationCode': verificationId,
-                'name': nameCont.text.trim(),
-                'address': addCont.text.trim(),
+                'name': nameCont.text,
+                'city': cityCont.text,
+                'state': stateCont.text,
                 'aadhar': aadCont.text,
                 'mobile': mobNoCont.text,
               },
@@ -139,7 +141,7 @@ class _SignUpState extends State<SignUp> {
                 height: 1.h,
               ),
               TextField(
-                controller: addCont,
+                controller: cityCont,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   hintText: 'City',
@@ -150,43 +152,43 @@ class _SignUpState extends State<SignUp> {
                 height: 1.h,
               ),
               TextField(
-                controller: addCont,
+                controller: stateCont,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   hintText: 'State',
                   disabledBorder: InputBorder.none,
                 ),
               ),
-              SizedBox(
-                height: 2.5.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      text: 'Upload your photo',
-                      style: TextStyle(
-                          color: greenTitle,
-                          fontSize: .27.dp,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: "Montserrat"),
-                      recognizer: TapGestureRecognizer()..onTap = () {},
-                    ),
-                  ),
-                  Container(
-                    height: 11.h,
-                    width: 25.w,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15.0.sp),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 23.5.h),
+              // SizedBox(
+              //   height: 2.5.h,
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     RichText(
+              //       text: TextSpan(
+              //         text: 'Upload your photo',
+              //         style: TextStyle(
+              //             color: greenTitle,
+              //             fontSize: .27.dp,
+              //             fontWeight: FontWeight.w600,
+              //             fontFamily: "Montserrat"),
+              //         recognizer: TapGestureRecognizer()..onTap = () {},
+              //       ),
+              //     ),
+              //     Container(
+              //       height: 11.h,
+              //       width: 25.w,
+              //       decoration: BoxDecoration(
+              //         color: Colors.grey,
+              //         borderRadius: BorderRadius.all(
+              //           Radius.circular(15.0.sp),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              SizedBox(height: 32.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -231,7 +233,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ],
               ),
-              SizedBox(height: 7.h),
+              SizedBox(height: 2.h),
               Center(
                 child: RichText(
                   text: TextSpan(

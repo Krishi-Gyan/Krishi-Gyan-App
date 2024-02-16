@@ -153,7 +153,7 @@ class _LogInState extends State<LogInUp> {
                 ),
               ],
             ),
-            const Spacer(flex: 1),
+            SizedBox(height: 2.h),
             Center(
               child: RichText(
                 text: TextSpan(
