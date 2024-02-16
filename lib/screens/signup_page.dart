@@ -118,6 +118,7 @@ class _SignUpState extends State<SignUp> {
                   border: InputBorder.none,
                   hintText: 'Mobile Number',
                   disabledBorder: InputBorder.none,
+                  counterText: '',
                 ),
               ),
               SizedBox(
@@ -131,6 +132,7 @@ class _SignUpState extends State<SignUp> {
                   border: InputBorder.none,
                   hintText: 'Adhaar Number',
                   disabledBorder: InputBorder.none,
+                  counterText: '',
                 ),
               ),
               SizedBox(
@@ -140,7 +142,18 @@ class _SignUpState extends State<SignUp> {
                 controller: addCont,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Address',
+                  hintText: 'City',
+                  disabledBorder: InputBorder.none,
+                ),
+              ),
+              SizedBox(
+                height: 1.h,
+              ),
+              TextField(
+                controller: addCont,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'State',
                   disabledBorder: InputBorder.none,
                 ),
               ),
