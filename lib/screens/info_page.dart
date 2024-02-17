@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:krishi_gyan/repo/farmer_data_repo.dart';
 import '../const.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -24,6 +25,19 @@ class _infoPageState extends State<infoPage> {
     "Other Pesticide used",
     "Area of farm"
   ];
+
+  final FarmerDataRepo farmerDataRepo = FarmerDataRepo();
+
+  @override
+  void initState() {
+    super.initState();
+    cNameCont = TextEditingController();
+    primFertCont = TextEditingController();
+    othFertCont = TextEditingController();
+    primPestCont = TextEditingController();
+    othPestCont = TextEditingController();
+    farmAreaCont = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,11 +156,34 @@ class _infoPageState extends State<infoPage> {
             ),
           ),
           TextButton(
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                '/bnb',
-              );
+            onPressed: () async {
+              print(
+                  '${cNameCont.text},${primFertCont.text}, ${othFertCont.text}');
+              if (cNameCont.text.isNotEmpty &&
+                  primFertCont.text.isNotEmpty &&
+                  othFertCont.text.isNotEmpty &&
+                  primPestCont.text.isNotEmpty &&
+                  othPestCont.text.isNotEmpty &&
+                  farmAreaCont.text.isNotEmpty) {
+                await farmerDataRepo
+                    .saveFarmDetails(
+                  cNameCont.text,
+                  primFertCont.text,
+                  othFertCont.text,
+                  primPestCont.text,
+                  othPestCont.text,
+                  farmAreaCont.text,
+                )
+                    .then((value) {
+                  Navigator.pushNamed(
+                    context,
+                    '/bnb',
+                  );
+                });
+              } else {
+                // Show a message or handle the case where one or more fields are empty.
+                print('Please fill in all fields');
+              }
             },
             style: TextButton.styleFrom(
                 fixedSize: Size(40.w, 7.h),
