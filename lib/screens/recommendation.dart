@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:krishi_gyan/const.dart';
 import 'package:krishi_gyan/constants/colors.dart';
 import 'package:menu_button/menu_button.dart';
 import '../widgets/ImageCarousel.dart';
@@ -13,7 +14,7 @@ const List<String> items = [
   'Fertilizers',
   'Pesticides',
   'Irrigation Methods',
-  'Crops'
+  'Crops',
 ];
 
 class Recommendation extends StatefulWidget {
@@ -23,6 +24,8 @@ class Recommendation extends StatefulWidget {
 }
 
 class _RecommendationState extends State<Recommendation> {
+  bool isExpanded = false;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -31,7 +34,7 @@ class _RecommendationState extends State<Recommendation> {
         appBar: AppBar(
           title: const Center(
             child: Text(
-              'Recommendations',
+              'Home',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -52,112 +55,188 @@ class _RecommendationState extends State<Recommendation> {
           child: Center(
             child: Column(
               children: [
-                Container(
-                  height: size.height * 0.30,
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    color: lightGreen,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30.sp),
-                      bottomRight: Radius.circular(30.sp),
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 1.0, // soften the shadow
-                        spreadRadius: 1.0, //extend the shadow
-                        offset: Offset(
-                          5.0,
-                          5.0,
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      height: isExpanded == false
+                          ? size.height * 0.32
+                          : size.height * 0.42,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                        color: lightGreen,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(30.sp),
+                          bottomRight: Radius.circular(30.sp),
                         ),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.sp, vertical: 20.sp),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  'city name',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.sp,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 5.0),
-                              child: Text(
-                                '32 c',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30.sp,
-                                ),
-                              ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 1.0, // soften the shadow
+                            spreadRadius: 1.0, //extend the shadow
+                            offset: Offset(
+                              5.0,
+                              5.0,
                             ),
                           ),
-                          SizedBox(
-                            height: 0.9.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Humidity',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8.w,
-                              ),
-                              Text(
-                                'Moisture',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8.w,
-                              ),
-                              Text(
-                                'Air Pollution',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.sp,
-                                ),
-                              ),
-                            ],
-                          ),
                         ],
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20.sp),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 8.h,
+                            ),
+                            Text(
+                              "Current Crop",
+                              style: TextStyle(
+                                color: greenTitle,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 2.h,
+                            ),
+                            Center(
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    height: 13.h,
+                                    width: 50.w,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(10.sp),
+                                      color: const Color.fromARGB(
+                                          255, 219, 219, 219),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 1.h,
+                                    left: 2.w,
+                                    child: Text(
+                                      "Crop name",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            isExpanded == false
+                                ? const SizedBox.shrink()
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 2.5.h,
+                                      ),
+                                      Text(
+                                        "Irrigation Methods: ",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      Text(
+                                        "Fertilizers: ",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      Text(
+                                        "Pesticides: ",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: size.width / 2 - 5.w,
+                      top: isExpanded == false ? 27.h : 37.h,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isExpanded = !isExpanded;
+                          });
+                        },
+                        child: Container(
+                          height: 10.h,
+                          width: 10.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: greenTitle,
+                          ),
+                          child: Center(
+                            child: Icon(
+                              isExpanded == false
+                                  ? Icons.keyboard_arrow_down
+                                  : Icons.keyboard_arrow_up,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20.sp),
+                    child: Text(
+                      "Recommendations",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20.sp),
+                    child: Text(
+                      "Select from the following dropdowns to make it current",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
                       ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 3.h,
+                  height: 1.h,
                 ),
                 Column(
                   children: items.map((e) {
                     return Container(
                       margin: const EdgeInsets.symmetric(vertical: 8.0),
                       child: MenuButton<String>(
-                        child: MenuButtonContainer(containername: e),
                         items: keys1,
                         itemBuilder: (String value) => Container(
                           alignment: Alignment.centerLeft,
@@ -171,6 +250,7 @@ class _RecommendationState extends State<Recommendation> {
                             e = value;
                           });
                         },
+                        child: MenuButtonContainer(containername: e),
                       ),
                     );
                   }).toList(),
@@ -181,7 +261,7 @@ class _RecommendationState extends State<Recommendation> {
                 SizedBox(
                   height: 130.h,
                   width: 130.w,
-                  child: CarouselWithIndicatorDemo(),
+                  child: const CarouselWithIndicatorDemo(),
                 ),
               ],
             ),

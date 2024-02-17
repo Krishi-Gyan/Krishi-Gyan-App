@@ -40,7 +40,9 @@ class _LogInState extends State<LogInUp> {
       return;
     }
 
-    await context.read<Login>().loginUsingPhoneNumber(
+    await context
+        .read<Login>()
+        .loginUsingPhoneNumber(
           phonenumber: phoneNumber,
           verificationCompleted: (PhoneAuthCredential credential) {},
           verificationFailed: (FirebaseAuthException e) {
@@ -55,7 +57,13 @@ class _LogInState extends State<LogInUp> {
               arguments: {'verificationCode': verificationId, 'name': null},
             );
           },
-        );
+        )
+        .then((value) {
+      Navigator.pushNamed(
+        context,
+        '/otp',
+      );
+    });
   }
 
   @override
@@ -93,6 +101,7 @@ class _LogInState extends State<LogInUp> {
                 hintText: 'Mobile Number',
                 disabledBorder: InputBorder.none,
                 prefixText: "+91",
+                counterText: '',
               ),
             ),
             const Spacer(
@@ -154,7 +163,7 @@ class _LogInState extends State<LogInUp> {
                 ),
               ],
             ),
-            const Spacer(flex: 1),
+            SizedBox(height: 2.h),
             Center(
               child: RichText(
                 text: TextSpan(

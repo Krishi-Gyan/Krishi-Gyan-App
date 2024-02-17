@@ -63,15 +63,12 @@ class _MandiState extends State<Mandi> {
       distanceFilter: 100,
     );
     Geolocator.getPositionStream(locationSettings: locationSettings)
-        .listen((Position _position) {
-
-    });
+        .listen((Position _position) {});
     setState(() {
       position = _position;
     });
     _onLocationChanged(_position);
     getAddress(_position);
-
   }
 
   void _onLocationChanged(Position _position) {
@@ -123,9 +120,7 @@ class _MandiState extends State<Mandi> {
                       width: 80.w,
                       height: 80.h,
                       point: LatLng(position!.latitude, position!.longitude),
-                      builder: (ctx) => Container(
-                        child: const Icon(Icons.location_on_sharp),
-                      ),
+                      child: const Icon(Icons.location_on_sharp),
                     ),
                   ]
                 : [],

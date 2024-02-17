@@ -14,8 +14,8 @@ class BNB extends StatefulWidget {
 class _BNBState extends State<BNB> {
   var selectedItem = 0;
   List children = [
-    const KrishiGyan(),
     const RecomScreen(),
+    const KrishiGyan(),
     const Mandi(),
     const AccountPage(),
   ];
@@ -38,13 +38,13 @@ class _BNBState extends State<BNB> {
         items: const [
           BottomNavigationBarItem(
             backgroundColor: Colors.white,
-            icon: Icon(Icons.assignment_sharp),
-            label: 'Krishi Gyan',
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             backgroundColor: Colors.white,
-            icon: Icon(Icons.info_outline),
-            label: 'Recommendation',
+            icon: Icon(Icons.assignment_sharp),
+            label: 'Krishi Gyan',
           ),
           BottomNavigationBarItem(
             backgroundColor: Colors.white,

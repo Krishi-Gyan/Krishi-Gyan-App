@@ -1,10 +1,8 @@
-import 'dart:async';
-import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class BarChartSample1 extends StatefulWidget {
-  BarChartSample1();
+  BarChartSample1({Key? key}) : super(key: key);
 
   final Color barBackgroundColor = Colors.black.withOpacity(0.3);
   final Color barColor = Colors.white;
@@ -109,7 +107,7 @@ class BarChartSample1State extends State<BarChartSample1> {
       maxY: 100,
       barTouchData: BarTouchData(
         touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor: Color.fromARGB(255, 5, 124, 184),
+          tooltipBgColor: const Color.fromARGB(255, 5, 124, 184),
           tooltipHorizontalAlignment: FLHorizontalAlignment.center,
           tooltipMargin: 0,
           getTooltipItem: (group, groupIndex, rod, rodIndex) {
@@ -173,10 +171,10 @@ class BarChartSample1State extends State<BarChartSample1> {
       ),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: AxisTitles(
+        rightTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        topTitles: AxisTitles(
+        topTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
         bottomTitles: AxisTitles(
@@ -186,7 +184,7 @@ class BarChartSample1State extends State<BarChartSample1> {
             reservedSize: 35,
           ),
         ),
-        leftTitles: AxisTitles(
+        leftTitles: const AxisTitles(
           sideTitles: SideTitles(
             showTitles: false,
           ),
@@ -196,7 +194,7 @@ class BarChartSample1State extends State<BarChartSample1> {
         show: false,
       ),
       barGroups: showingGroups(),
-      gridData: FlGridData(show: false),
+      gridData: const FlGridData(show: false),
     );
   }
 
