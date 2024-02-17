@@ -26,6 +26,21 @@ class _infoPageState extends State<infoPage> {
   ];
 
   @override
+  void dispose() {
+    primFertCont.dispose();
+    othFertCont.dispose();
+    primPestCont.dispose();
+    cNameCont.dispose();
+    othPestCont.dispose();
+    farmAreaCont.dispose(); 
+    super.dispose();
+  }
+
+  void isGoogleAuth(){
+    
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(

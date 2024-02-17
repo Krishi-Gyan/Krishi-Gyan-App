@@ -178,7 +178,7 @@ class _SignUpState extends State<SignUp> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
-                    onPressed: () async => await signInUsingPhoneNumber(),
+                    onPressed: () async { await signInUsingPhoneNumber(); await Navigator.pushReplacementNamed(context, "/info");},
                     style: TextButton.styleFrom(
                       fixedSize: Size(33.w, 6.8.h),
                       backgroundColor: greenTitle,
@@ -206,7 +206,10 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () async{
+                    await context.read<Login>().signInWithGoogle();
+                    await Navigator.pushReplacementNamed(context, "/info");
+                  },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
