@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:krishi_gyan/provider/loginProvider.dart';
 import 'package:provider/provider.dart';
@@ -25,8 +27,37 @@ class _AccountPageState extends State<AccountPage> {
       "nitrogenContent": "Lorem Ipsum",
     }
   ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    await fetchUserData();
+  }
+
+  Future<void> fetchUserData() async {
+    final ref = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid);
+
+    await ref.get().then(
+        (DocumentSnapshot doc) => context.read<Login>().userData =
+            doc.data() as Map<String, dynamic>, onError: (err, _) {
+      // ignore: avoid_print
+      print("Error getting document: $err");
+    });
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userData = context.read<Login>().userData;
+    print(userData);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -134,7 +165,7 @@ class _AccountPageState extends State<AccountPage> {
                                     width: 2.w,
                                   ),
                                   Text(
-                                    "(UID)${context.read<Login>().currentUser?.uid ?? ''}",
+                                    userData["name"] ?? "Fetching...",
                                     style: TextStyle(fontSize: 16.sp),
                                   ),
                                 ],
@@ -160,7 +191,7 @@ class _AccountPageState extends State<AccountPage> {
                                     width: 2.w,
                                   ),
                                   Text(
-                                    e['mobile'],
+                                    userData["mobile"] ?? "Fetching...",
                                     style: TextStyle(fontSize: 16.sp),
                                   ),
                                 ],
@@ -186,7 +217,7 @@ class _AccountPageState extends State<AccountPage> {
                                     width: 2.w,
                                   ),
                                   Text(
-                                    e['location'],
+                                    "${userData['city'] ?? "Fetching..."}, ${userData['state'] ?? "Fetching..."}",
                                     style: TextStyle(fontSize: 16.sp),
                                   ),
                                 ],
@@ -212,7 +243,9 @@ class _AccountPageState extends State<AccountPage> {
                                     width: 2.w,
                                   ),
                                   Text(
-                                    e['crop'],
+                                    userData.isEmpty
+                                        ? "Crop is not selected"
+                                        : "${userData['cropdata']['cropname']}",
                                     style: TextStyle(fontSize: 16.sp),
                                   ),
                                 ],
@@ -293,11 +326,11 @@ class _AccountPageState extends State<AccountPage> {
                         ),
                       ),
                     ),
+                style: ElevatedButton.styleFrom(backgroundColor: darkGreen),
                 child: Text(
                   "Logout",
                   style: TextStyle(fontSize: 16.sp, color: Colors.white),
                 ),
-                style: ElevatedButton.styleFrom(backgroundColor: darkGreen),
               ),
             ],
           ),

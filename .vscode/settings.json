@@ -1,3 +1,4 @@
 {
-    "liveshare.languages.allowGuestCommandControl": true
+    "liveshare.languages.allowGuestCommandControl": true,
+    "editor.formatOnSave": true
 }

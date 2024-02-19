@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:krishi_gyan/provider/loginProvider.dart';
 import 'package:pinput/pinput.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../const.dart';
@@ -19,16 +21,12 @@ class _OtpPageState extends State<OtpPage> {
   final TextEditingController _pinInputController = TextEditingController();
 
   Future<void> _verifyAndLogin(String smsCode, String verificationId) async {
-    try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationId,
-        smsCode: smsCode,
-      );
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+      verificationId: verificationId,
+      smsCode: smsCode,
+    );
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
-    } catch (e) {
-      rethrow;
-    }
+    await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   Future<void> setData(
@@ -114,44 +112,63 @@ class _OtpPageState extends State<OtpPage> {
                 onCompleted: (String otp) async {
                   Map<String, dynamic> argsMap =
                       arguments as Map<String, dynamic>;
-                  try {
-                    if (argsMap['name'] != null) {
-                      await _verifyAndLogin(
-                        _pinInputController.text,
-                        argsMap['verificationCode']!,
-                      );
 
-                      await setData(
-                        argsMap['name'],
-                        argsMap['mobile'],
-                        argsMap['address'],
-                        argsMap['aadhar'],
-                      );
+                  await _verifyAndLogin(
+                    _pinInputController.text,
+                    argsMap['verificationCode']!,
+                  ).then((value) async {
+                    if (arguments['isSignUp'] == true) {
+                      context.read<Login>().userData = {
+                        "adhaar": argsMap['aadhar'],
+                        "mobile": argsMap['mobile'],
+                        "name": argsMap['name'],
+                        "city": argsMap['city'],
+                        "state": argsMap['state'],
+                        "cropdata": {},
+                      };
+                      final ref = FirebaseFirestore.instance
+                          .collection("users")
+                          .doc(FirebaseAuth.instance.currentUser?.uid);
 
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        '/bnb',
-                        (route) => false,
-                      );
-                      return;
+                      await ref.set(context.read<Login>().userData).onError(
+                          (e, _) => print("Error writing document: $e"));
+                    } else {
+                      print("-----------------------------");
+                      print("IN ELSE PART");
+                      final ref = FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(FirebaseAuth.instance.currentUser?.uid);
+                      await ref.get().then((DocumentSnapshot doc) {
+                        final map = doc.data() as Map<String, dynamic>;
+                        if (map['cropdata'] == {}) {
+                          print("CROP DATA IS NULL");
+                          // user has not given crop data take to info page
+                          if (context.mounted) {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              '/info',
+                              (route) => false,
+                            );
+                          }
+                        } else {
+                          print("CROP DATA IS NOT NULL");
+                          if (context.mounted) {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              '/bnb',
+                              (route) => false,
+                            );
+                          }
+                        }
+                      }, onError: (err, _) {
+                        // ignore: avoid_print
+                        print("Error getting document: $err");
+                      });
                     }
-
-                    await _verifyAndLogin(
-                      _pinInputController.text,
-                      argsMap['verificationCode']!,
-                    );
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      '/bnb',
-                      (route) => false,
-                    );
-                  } catch (e) {
-                    print(e.toString());
+                  }, onError: (err, _) {
                     showSnackBar(
-                      'Something went wrong while verifying the code...',
-                    );
-                    return;
-                  }
+                        'Something went wrong while verifying the otp...');
+                  });
                 },
               ),
             ),

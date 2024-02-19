@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController stateCont = TextEditingController();
 
   bool passwordVisible = false;
+  bool isLoading = false;
 
   void showSnackBar(String msg) {
     SnackBar snackbar = SnackBar(
@@ -39,14 +42,29 @@ class _SignUpState extends State<SignUp> {
     String phoneNumber = "+91 ${mobNoCont.text}";
 
     if (mobNoCont.text.length < 10) {
-      showSnackBar('Mobile number is not valid...');
+      showSnackBar('Mobile Number is not valid...');
+      return;
+    }
+    if (cityCont.text.isEmpty) {
+      showSnackBar('Please enter a City Name...');
+      return;
+    }
+    if (nameCont.text.isEmpty) {
+      showSnackBar('Please enter a Username...');
+      return;
+    }
+    if (aadCont.text.length < 12) {
+      showSnackBar('Aadhar Number is not valid...');
+      return;
+    }
+    if (stateCont.text.isEmpty) {
+      showSnackBar('Please enter a State Name...');
       return;
     }
 
-    if (aadCont.text.length < 12) {
-      showSnackBar('Aadhar number is not valid...');
-      return;
-    }
+    setState(() {
+      isLoading = true;
+    });
 
     await context.read<Login>().loginUsingPhoneNumber(
           phonenumber: phoneNumber,
@@ -67,10 +85,14 @@ class _SignUpState extends State<SignUp> {
                 'state': stateCont.text,
                 'aadhar': aadCont.text,
                 'mobile': mobNoCont.text,
+                'isSignUp': true,
               },
             );
           },
         );
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -159,41 +181,16 @@ class _SignUpState extends State<SignUp> {
                   disabledBorder: InputBorder.none,
                 ),
               ),
-              // SizedBox(
-              //   height: 2.5.h,
-              // ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     RichText(
-              //       text: TextSpan(
-              //         text: 'Upload your photo',
-              //         style: TextStyle(
-              //             color: greenTitle,
-              //             fontSize: .27.dp,
-              //             fontWeight: FontWeight.w600,
-              //             fontFamily: "Montserrat"),
-              //         recognizer: TapGestureRecognizer()..onTap = () {},
-              //       ),
-              //     ),
-              //     Container(
-              //       height: 11.h,
-              //       width: 25.w,
-              //       decoration: BoxDecoration(
-              //         color: Colors.grey,
-              //         borderRadius: BorderRadius.all(
-              //           Radius.circular(15.0.sp),
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
               SizedBox(height: 32.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
-                    onPressed: () async { await signInUsingPhoneNumber(); await Navigator.pushReplacementNamed(context, "/info");},
+                    onPressed: isLoading
+                        ? () {}
+                        : () async {
+                            await signInUsingPhoneNumber();
+                          },
                     style: TextButton.styleFrom(
                       fixedSize: Size(33.w, 6.8.h),
                       backgroundColor: greenTitle,
@@ -203,10 +200,12 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
-                    child: const Text(
-                      'SignUp',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    child: isLoading
+                        ? const CircularProgressIndicator()
+                        : const Text(
+                            'SignUp',
+                            style: TextStyle(color: Colors.white),
+                          ),
                   ),
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
@@ -221,10 +220,17 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
-                    onPressed: () async{
-                    await context.read<Login>().signInWithGoogle();
-                    await Navigator.pushReplacementNamed(context, "/info");
-                  },
+                    onPressed: () async {
+                      // await context.read<Login>().signInWithGoogle();
+                      // context.read<Login>().userData = {
+                      //   "adhaar": aadCont.text,
+                      //   "mobile": mobNoCont.text,
+                      //   "name": nameCont.text,
+                      //   "city": cityCont.text,
+                      //   "state": stateCont.text
+                      // };
+                      // await Navigator.pushReplacementNamed(context, "/info");
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(

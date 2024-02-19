@@ -139,7 +139,7 @@ class _KrishiGyanState extends State<KrishiGyan> {
                                   child: Text(
                                     _weather?.temperature.toString() ?? "",
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: darkGreen,
                                       fontSize: 25.sp,
                                     ),
                                   ),

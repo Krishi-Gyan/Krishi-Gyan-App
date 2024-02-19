@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../const.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../provider/loginProvider.dart';
 
 class infoPage extends StatefulWidget {
   @override
@@ -22,7 +27,7 @@ class _infoPageState extends State<infoPage> {
     "Other Fertilizer used",
     "Primary Pesticide used",
     "Other Pesticide used",
-    "Area of farm"
+    "Farm Area(sq km)"
   ];
 
   @override
@@ -32,12 +37,19 @@ class _infoPageState extends State<infoPage> {
     primPestCont.dispose();
     cNameCont.dispose();
     othPestCont.dispose();
-    farmAreaCont.dispose(); 
+    farmAreaCont.dispose();
     super.dispose();
   }
 
-  void isGoogleAuth(){
-    
+  void showSnackBar(String msg) {
+    SnackBar snackbar = SnackBar(
+      content: Text(msg),
+      behavior: SnackBarBehavior.floating,
+      // margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+      dismissDirection: DismissDirection.horizontal,
+    );
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 
   @override
@@ -55,7 +67,7 @@ class _infoPageState extends State<infoPage> {
               color: greenTitle,
               iconSize: 23.sp,
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.pushNamed(context, "/sign_up");
               },
             ),
             SizedBox(height: 2.h),
@@ -102,7 +114,7 @@ class _infoPageState extends State<infoPage> {
 
                   txtfld(othPestCont, labelLst[4]),
 
-                  txtfld(farmAreaCont, labelLst[5]),
+                  txtfld(farmAreaCont, labelLst[5], type: TextInputType.phone),
 
                   // Row(
                   //   children: [
@@ -157,11 +169,56 @@ class _infoPageState extends State<infoPage> {
             ),
           ),
           TextButton(
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                '/bnb',
-              );
+            onPressed: () async {
+              if (primFertCont.text.isEmpty) {
+                showSnackBar('Primary Fertilizer is not valid...');
+                return;
+              }
+              if (othFertCont.text.isEmpty) {
+                showSnackBar('Please enter Other Fertilizer...');
+                return;
+              }
+              if (cNameCont.text.isEmpty) {
+                showSnackBar('Please enter Crop Name...');
+                return;
+              }
+              if (primPestCont.text.isEmpty) {
+                showSnackBar('Primary Pesticide is not valid...');
+                return;
+              }
+              if (othPestCont.text.isEmpty) {
+                showSnackBar('Please enter Other Pesticide...');
+                return;
+              }
+              if (farmAreaCont.text.isEmpty) {
+                showSnackBar('Please enter Farm Area...');
+                return;
+              }
+
+              final userDetails = <String, dynamic>{
+                "cropdata": {
+                  "cropname": cNameCont.text,
+                  "primaryfertilizer": primFertCont.text,
+                  "otherfertilizer": othFertCont.text,
+                  "primarypesticide": primPestCont.text,
+                  "otherpesticide": othPestCont.text,
+                  "farmarea": farmAreaCont.text,
+                }
+              };
+              final ref = FirebaseFirestore.instance
+                  .collection("users")
+                  .doc(FirebaseAuth.instance.currentUser?.uid);
+              await ref
+                  .update(userDetails)
+                  // ignore: avoid_print
+                  .onError((e, _) => print("Error writing document: $e"));
+
+              if (context.mounted) {
+                Navigator.pushNamed(
+                  context,
+                  '/bnb',
+                );
+              }
             },
             style: TextButton.styleFrom(
                 fixedSize: Size(40.w, 7.h),
@@ -191,10 +248,12 @@ class _infoPageState extends State<infoPage> {
     );
   }
 
-  txtfld(TextEditingController tempCont, String labelTxt) {
+  txtfld(TextEditingController tempCont, String labelTxt,
+      {TextInputType type = TextInputType.text}) {
     return Padding(
       padding: EdgeInsets.only(bottom: 2.5.h),
       child: TextField(
+        keyboardType: type,
         controller: tempCont,
         cursorColor: greenTitle,
         decoration: InputDecoration(

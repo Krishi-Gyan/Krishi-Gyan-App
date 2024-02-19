@@ -9,6 +9,7 @@ import 'package:krishi_gyan/constants/exceptions.dart';
 class Login with ChangeNotifier {
   final FirebaseAuth auth = FirebaseAuth.instance;
   User? user;
+  Map<String, dynamic> userData = {};
 
   Stream<User?> get userChange {
     return auth.authStateChanges();
@@ -107,17 +108,17 @@ class Login with ChangeNotifier {
     });
   }
 
-Future<UserCredential> signInWithGoogle() async {
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-  
-  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
-  final credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth?.accessToken,
-    idToken: googleAuth?.idToken,
-  );
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
 
-  return await FirebaseAuth.instance.signInWithCredential(credential);
-}
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 }
