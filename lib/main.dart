@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:krishi_gyan/screens/info_page.dart';
+import 'package:krishi_gyan/screens/signup_page.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -70,6 +72,8 @@ class MainApp extends StatelessWidget {
         '/sign_in': (context) => const LogInUp(),
         '/register': (context) => const Register(),
         '/otp': (context) => const OtpPage(),
+        '/info': (context) => infoPage(),
+        '/sign_up': (context) =>const SignUp(),
       },
     );
   }

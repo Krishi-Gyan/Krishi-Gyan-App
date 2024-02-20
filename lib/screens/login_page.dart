@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +23,7 @@ class _LogInState extends State<LogInUp> {
   TextEditingController mobNoCont = TextEditingController();
   TextEditingController passCont = TextEditingController();
   bool passwordVisible = false;
+  bool isLoading = false;
 
   void showSnackBar(String msg) {
     SnackBar snackbar = SnackBar(
@@ -32,17 +36,34 @@ class _LogInState extends State<LogInUp> {
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 
-  Future<void> signInUsingPhoneNumber() async {
-    String phoneNumber = "+91 ${mobNoCont.text}";
-
-    if (mobNoCont.text.length < 10) {
-      showSnackBar('Mobile number is not valid...');
+  void doesUserExist() async {
+    if (mobNoCont.text.isEmpty && mobNoCont.text.length < 10) {
+      showSnackBar('Please enter a valid mobile number...');
       return;
     }
 
-    await context
-        .read<Login>()
-        .loginUsingPhoneNumber(
+    setState(() {
+      isLoading = true;
+    });
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('mobile', isEqualTo: mobNoCont.text)
+        .get()
+        .then((QuerySnapshot value) async {
+      if (value.size > 0) {
+        await signInUsingPhoneNumber();
+        return;
+      }
+      // user has not signed up take him to sign up page
+      Navigator.pushNamed(context, '/sign_up');
+      showSnackBar('You are not registered please signup first');
+    });
+  }
+
+  Future<void> signInUsingPhoneNumber() async {
+    String phoneNumber = "+91 ${mobNoCont.text}";
+
+    await context.read<Login>().loginUsingPhoneNumber(
           phonenumber: phoneNumber,
           verificationCompleted: (PhoneAuthCredential credential) {},
           verificationFailed: (FirebaseAuthException e) {
@@ -51,18 +72,14 @@ class _LogInState extends State<LogInUp> {
           },
           codeAutoRetrievalTimeout: (String verificationId) {},
           codeSent: (String verificationId, int? resendToken) {
-            Navigator.pushNamed(
-              context,
-              '/otp',
-              arguments: {'verificationCode': verificationId, 'name': null},
-            );
+            Navigator.pushNamed(context, '/otp', arguments: {
+              'verificationCode': verificationId,
+              'isSignUp': false
+            });
           },
-        )
-        .then((value) {
-      Navigator.pushNamed(
-        context,
-        '/otp',
-      );
+        );
+    setState(() {
+      isLoading = false;
     });
   }
 
@@ -111,9 +128,7 @@ class _LogInState extends State<LogInUp> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
-                  onPressed: () async {
-                    await signInUsingPhoneNumber();
-                  },
+                  onPressed: isLoading ? () {} : doesUserExist,
                   style: TextButton.styleFrom(
                     fixedSize: Size(37.w, 6.7.h),
                     backgroundColor: greenTitle,
@@ -123,10 +138,12 @@ class _LogInState extends State<LogInUp> {
                       ),
                     ),
                   ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  child: isLoading
+                      ? const CircularProgressIndicator()
+                      : const Text(
+                          'Login',
+                          style: TextStyle(color: Colors.white),
+                        ),
                 ),
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
@@ -141,7 +158,9 @@ class _LogInState extends State<LogInUp> {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    await context.read<Login>().signInWithGoogle();
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(

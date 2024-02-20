@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:krishi_gyan/constants/exceptions.dart';
 
 class Login with ChangeNotifier {
   final FirebaseAuth auth = FirebaseAuth.instance;
   User? user;
+  Map<String, dynamic> userData = {};
 
   Stream<User?> get userChange {
     return auth.authStateChanges();
@@ -104,5 +106,19 @@ class Login with ChangeNotifier {
       'mobile': mobile,
       // 'timestamp': documentIdFromCurrentDate(),
     });
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
