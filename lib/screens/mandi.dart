@@ -435,7 +435,7 @@ class _SellFormState extends State<SellForm> {
             onPressed: pickFile,
             child: Text(
               'Add image',
-              style: TextStyle(fontSize: 14.sp,color: Colors.white),
+              style: TextStyle(fontSize: 14.sp, color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
               elevation: 40,
@@ -453,7 +453,7 @@ class _SellFormState extends State<SellForm> {
             onPressed: sellButtonPress,
             child: Text(
               'Save',
-              style: TextStyle(fontSize: 14.sp,color: Colors.white),
+              style: TextStyle(fontSize: 14.sp, color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
               elevation: 40,
