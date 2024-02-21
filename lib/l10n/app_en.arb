@@ -1,0 +1,12 @@
+{
+    "@@locale": "en",
+    "appTitle": "Krishigyan",
+    "@appTitle": {
+        "description": "Main application title"
+    },
+    "language": "English",
+    "@language": {
+        "description": "the current language"
+    },
+    "welcome": "Welcome!"
+}
