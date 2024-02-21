@@ -110,7 +110,8 @@ class _ProductCardState extends State<ProductCard> {
                         ),
                         child: Text(
                           'BUY',
-                          style: TextStyle(fontSize: 16.sp),
+                          style:
+                              TextStyle(fontSize: 16.sp, color: Colors.white),
                         ),
                       ),
                     )
