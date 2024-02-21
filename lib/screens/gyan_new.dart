@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-// import 'package:krishi_gyan/api.dart'; 
+// import 'package:krishi_gyan/api.dart';
 import 'package:krishi_gyan/const.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:weather/weather.dart';
