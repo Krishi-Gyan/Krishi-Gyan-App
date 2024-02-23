@@ -1,0 +1,12 @@
+{
+    "@@locale": "hi",
+    "language": "हिंदी",
+    "@language": {
+        "description": "वर्तमान भाषा"
+    },
+    "appTitle": "कृषिज्ञान",
+    "@appTitle": {
+        "description": "द्वितीयक ऐप शीर्षक"
+    },
+    "welcome": "नमस्ते"
+}

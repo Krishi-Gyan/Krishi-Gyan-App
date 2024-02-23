@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:krishi_gyan/api.dart';
+// import 'package:krishi_gyan/api.dart';
 import 'package:krishi_gyan/const.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:weather/weather.dart';
@@ -15,7 +15,7 @@ class KrishiGyan extends StatefulWidget {
 }
 
 class _KrishiGyanState extends State<KrishiGyan> {
-  final WeatherFactory _wf = WeatherFactory(openWeatherApiKey);
+  final WeatherFactory _wf = WeatherFactory("1234");
   Weather? _weather;
   String city = "delhi";
 

@@ -1,13 +1,16 @@
+import 'dart:async';
+
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:krishi_gyan/constants/colors.dart';
 import 'package:krishi_gyan/provider/databaseProvider.dart';
 import 'package:krishi_gyan/widgets/cards.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+// import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:provider/provider.dart';
@@ -25,67 +28,20 @@ class Mandi extends StatefulWidget {
 
 class _MandiState extends State<Mandi> {
   WidgetMake b = WidgetMake.buy;
-  final MapController _mapController = MapController();
-  MapOptions _mapOptions = MapOptions();
 
   Position? position;
   String? add1;
   String? add2;
 
-  Future<void> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
+  static const LatLng targetLocation =
+      LatLng(28.621167966628416, 77.13521164582943);
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      await Geolocator.openLocationSettings();
-      serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
-      if (!serviceEnabled) {
-        return;
-      }
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      await Geolocator.openLocationSettings();
-    }
-    Position _position = await Geolocator.getCurrentPosition();
-
-    const LocationSettings locationSettings = LocationSettings(
-      accuracy: LocationAccuracy.best,
-      distanceFilter: 100,
-    );
-    Geolocator.getPositionStream(locationSettings: locationSettings)
-        .listen((Position _position) {});
-    setState(() {
-      position = _position;
-    });
-    _onLocationChanged(_position);
-    getAddress(_position);
-  }
-
-  void _onLocationChanged(Position _position) {
-    _mapController.move(
-      LatLng(_position.latitude, _position.longitude),
-      19,
-    );
-    _mapOptions = MapOptions(
-      center: LatLng(_position.latitude, _position.longitude),
-      zoom: _mapController.zoom,
-    );
-  }
+  final Completer<GoogleMapController> _controller =
+      Completer<GoogleMapController>();
 
   @override
   void initState() {
     super.initState();
-    _determinePosition();
     //getAddress();
   }
 
@@ -104,29 +60,6 @@ class _MandiState extends State<Mandi> {
 
   @override
   Widget build(BuildContext context) {
-    FlutterMap flutterMap = FlutterMap(
-        mapController: _mapController,
-        options: _mapOptions,
-        children: [
-          TileLayer(
-            urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            subdomains: const ['a', 'b', 'c'],
-            maxZoom: 25,
-          ),
-          MarkerLayer(
-            markers: position != null
-                ? [
-                    Marker(
-                      width: 80.w,
-                      height: 80.h,
-                      point: LatLng(position!.latitude, position!.longitude),
-                      child: const Icon(Icons.location_on_sharp),
-                    ),
-                  ]
-                : [],
-          )
-        ]);
-
     // String datetime = DateTime.now().toString();
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -164,27 +97,31 @@ class _MandiState extends State<Mandi> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30.0),
                   child: Container(
-                    child: flutterMap,
+                    decoration: BoxDecoration(color: Colors.red),
                     height: 38.h,
                     width: 90.w,
                     alignment: Alignment.center,
+                    child: GoogleMap(
+                      initialCameraPosition: const CameraPosition(
+                        target: LatLng(28.621167966628416, 77.13521164582943),
+                        zoom: 1,
+                      ),
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
+                    ),
                   ),
                 ),
               ),
               Positioned(
+                top: 9.h,
+                right: 20.w,
                 child: Text(add1 ?? "",
                     style: TextStyle(
                         color: Colors.white,
                         fontStyle: FontStyle.normal,
                         fontSize: 16.sp)),
-                top: 9.h,
-                right: 20.w,
               ),
-              // Positioned(
-              //   child: Text("$position"),
-              //   top: 100,
-              //   left: 100,
-              // ),
             ]),
             SizedBox(
               height: 2.h,
@@ -435,7 +372,7 @@ class _SellFormState extends State<SellForm> {
             onPressed: pickFile,
             child: Text(
               'Add image',
-              style: TextStyle(fontSize: 14.sp,color: Colors.white),
+              style: TextStyle(fontSize: 14.sp, color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
               elevation: 40,
@@ -453,7 +390,7 @@ class _SellFormState extends State<SellForm> {
             onPressed: sellButtonPress,
             child: Text(
               'Save',
-              style: TextStyle(fontSize: 14.sp,color: Colors.white),
+              style: TextStyle(fontSize: 14.sp, color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
               elevation: 40,
