@@ -18,6 +18,7 @@ import 'screens/otp_page.dart';
 import 'screens/recom_screen.dart';
 import 'screens/_old_register_page.dart';
 import 'widgets/check_login.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,6 +63,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      title: "Krishigyan",
       home: const CheckLogin(),
       routes: {
         '/lp': (context) => const LandingPage(),
@@ -73,7 +77,7 @@ class MainApp extends StatelessWidget {
         '/register': (context) => const Register(),
         '/otp': (context) => const OtpPage(),
         '/info': (context) => infoPage(),
-        '/sign_up': (context) =>const SignUp(),
+        '/sign_up': (context) => const SignUp(),
       },
     );
   }

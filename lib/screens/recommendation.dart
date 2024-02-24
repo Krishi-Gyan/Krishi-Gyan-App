@@ -219,7 +219,7 @@ class _RecommendationState extends State<Recommendation> {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 20.sp),
+                    padding: EdgeInsets.only(left: 20.sp, right: 20.sp),
                     child: Text(
                       "Select from the following dropdowns to make it current",
                       style: TextStyle(
