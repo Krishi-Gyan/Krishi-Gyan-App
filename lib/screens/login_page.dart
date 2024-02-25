@@ -11,6 +11,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../const.dart';
 import '../provider/loginProvider.dart';
 import './signup_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LogInUp extends StatefulWidget {
   const LogInUp({Key? key}) : super(key: key);
@@ -98,7 +99,7 @@ class _LogInState extends State<LogInUp> {
               textAlign: TextAlign.justify,
               text: TextSpan(children: [
                 TextSpan(
-                  text: 'Login to your \naccount',
+                  text: AppLocalizations.of(context)!.login,
                   style: GoogleFonts.judson(
                       fontWeight: FontWeight.bold,
                       fontSize: .44.dp,
