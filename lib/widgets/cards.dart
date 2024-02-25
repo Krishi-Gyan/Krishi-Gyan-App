@@ -77,7 +77,7 @@ class _ProductCardState extends State<ProductCard> {
                     ),
                     SizedBox(
                       height: 4.h,
-                      width: 20.w,
+                      width: 30.w,
                       child: ElevatedButton(
                         onPressed: () {
                           showDialog(
@@ -118,7 +118,7 @@ class _ProductCardState extends State<ProductCard> {
                   ],
                 ),
                 SizedBox(
-                  width: 20.w,
+                  width: 10.w,
                 ),
                 Container(
                   height: 10.h,

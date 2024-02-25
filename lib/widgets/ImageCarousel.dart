@@ -30,9 +30,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
 
   List<Map<String, dynamic>> get imageList {
     return [
-      {"id": 1, "image_path": 'assets/logo.png'},
-      {"id": 2, "image_path": 'assets/logo.png'},
-      {"id": 3, "image_path": 'assets/logo.png'},
+      {"id": 1, "image_path": 'assets/soybean.jpg'},
+      {"id": 2, "image_path": 'assets/sorghum.jpg'},
     ];
   }
 
