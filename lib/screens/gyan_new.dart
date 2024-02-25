@@ -236,29 +236,6 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: EdgeInsets.all(6.w),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: SingleChildScrollView(
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'HEADING\n',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: darkGreen,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text:
-                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                  style: GoogleFonts.inter(
-                                      fontSize: 16.sp, color: Colors.black),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(25.sp),
@@ -274,34 +251,35 @@ class _KrishiGyanState extends State<KrishiGyan> {
                             ),
                           ],
                         ),
-                      ),
-                      const SizedBox(width: 15),
-                      Container(
-                        padding: const EdgeInsets.all(20.0),
-                        height: size.height * 0.2,
-                        width: size.width * 0.7,
                         child: SingleChildScrollView(
                           child: RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: 'HEADING\n',
+                                  text: 'Land Preparation\n',
                                   style: GoogleFonts.inter(
-                                    fontSize: 18,
+                                    fontSize: 18.sp,
                                     fontWeight: FontWeight.w600,
                                     color: darkGreen,
                                   ),
                                 ),
                                 TextSpan(
                                   text:
-                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                  style: GoogleFonts.inter(color: Colors.black),
+                                      'The wheat crop requires a well-pulverized but compact seed bed for good and uniform germination. Three or four ploughings in the summer, repeated harrowing in the rainy season, followed by three or four cultivations and planking immediately before sowing produce a good, firm seed bed for the dry crop on alluvial soils. For the irrigated crop, the land is given a pre-sowing irrigation (palewa or raund) and the number of ploughings is reduced. Where white ants or other pests are a problem, Aldrin 5% or BHC 10% dust at the rate of 25 kg/ha should be applied to the soil after the last ploughing or before planking.',
+                                  style: GoogleFonts.inter(
+                                      fontSize: 16.sp, color: Colors.black),
                                 )
                               ],
                             ),
                           ),
                         ),
+                      ),
+                      const SizedBox(width: 15),
+                      Container(
+                        padding: const EdgeInsets.all(20.0),
+                        height: size.height * 0.2,
+                        width: size.width * 0.7,
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
@@ -317,19 +295,14 @@ class _KrishiGyanState extends State<KrishiGyan> {
                             ),
                           ],
                         ),
-                      ),
-                      const SizedBox(width: 15),
-                      Container(
-                        padding: const EdgeInsets.all(20.0),
-                        height: size.height * 0.2,
-                        width: size.width * 0.7,
                         child: SingleChildScrollView(
                           child: RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: 'HEADING\n',
+                                  text:
+                                      'Application of Mannures and Fertilizer\n',
                                   style: GoogleFonts.inter(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
@@ -338,13 +311,28 @@ class _KrishiGyanState extends State<KrishiGyan> {
                                 ),
                                 TextSpan(
                                   text:
-                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
+                                      '''It is desirable that 2 to 3 tonnes of farmyard manure per hectare or some other organic matter is applied 5 or 6 weeks before sowing. The fertilizer requirement of the irrigated wheat crop are as follows:
+With assured fertilizer supply:
+Nitrogen (N) @8- - 120 kg/ha
+Phosphorus (P2O5) @ 40- 60 kg/ha
+Potash (K2O) @ 40 kg/ha.
+
+Under fertilizer constraints:
+N @ 60-80 kg/ha
+P2O5 @ 30-40 kg/ha
+K2O @ 20-25 kg/ha.''',
                                   style: GoogleFonts.inter(color: Colors.black),
                                 )
                               ],
                             ),
                           ),
                         ),
+                      ),
+                      const SizedBox(width: 15),
+                      Container(
+                        padding: const EdgeInsets.all(20.0),
+                        height: size.height * 0.2,
+                        width: size.width * 0.7,
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
@@ -359,6 +347,71 @@ class _KrishiGyanState extends State<KrishiGyan> {
                               ),
                             ),
                           ],
+                        ),
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Interculture\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      'Generally weeding is done after 1 ½ to 2 months after sowing or weedicides like 2,4 D, Avadex or Nitrofen (Tok E-25) for controling Chenopodium sp, Angallis sp. Asphodelus sp. Phalaris sp. of weeds.',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 15),
+                      Container(
+                        padding: const EdgeInsets.all(20.0),
+                        height: size.height * 0.2,
+                        width: size.width * 0.7,
+                        decoration: BoxDecoration(
+                          color: lightGreen,
+                          borderRadius: BorderRadius.circular(30.0),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 1.0, // soften the shadow
+                              spreadRadius: 0.5, //extend the shadow
+                              offset: Offset(
+                                5.0,
+                                5.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Irrigation\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      'The high yielding wheat varieties should be given five to six irrigations at their critical growth stages viz. Crown root initiation, tillering, jointing, flowering, milk and dough which come at 21-25 days after sowing (DAS), 45-60 DAS, 60-70 DAS, 90-95 DAS, 100-105 DAS and 120-125 DAS respectively. Off these irrigation at CRI stage is most important.',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -383,28 +436,6 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: SingleChildScrollView(
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'HEADING\n',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: darkGreen,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text:
-                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                  style: GoogleFonts.inter(color: Colors.black),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
@@ -419,6 +450,28 @@ class _KrishiGyanState extends State<KrishiGyan> {
                               ),
                             ),
                           ],
+                        ),
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Agriculture Infrastructure Fund\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      'The Union Cabinet in July 2020 has approved a new pan India Central Sector Scheme called Agriculture Infrastructure Fund (National Agriculture Infra Financing Facility). The scheme shall provide a medium - long term debt financing facility for investment in viable projects for post-harvest management Infrastructure and community farming assets through interest subvention and financial support.',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 15),
@@ -426,28 +479,6 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: SingleChildScrollView(
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'HEADING\n',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: darkGreen,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text:
-                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                  style: GoogleFonts.inter(color: Colors.black),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
@@ -462,6 +493,29 @@ class _KrishiGyanState extends State<KrishiGyan> {
                               ),
                             ),
                           ],
+                        ),
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text:
+                                      'Animal Husbandry Infrastructure Development Fund\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      'The Animal Husbandry Infrastructure Development Fund (AHIDF), implemented under Infrastructure Development Fund (IDF) with an outlay of Rs.29,610.25 crore is to be continued until 2025-26. \nThe scheme will incentivize investments for Dairy processing and product diversification, Meat processing and product diversification, Animal Feed Plant, Breed multiplication farm, Animal Waste to Wealth Management (Agri-waste management) and Veterinary vaccine and drug production facilities.',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 15),
@@ -469,28 +523,6 @@ class _KrishiGyanState extends State<KrishiGyan> {
                         padding: const EdgeInsets.all(20.0),
                         height: size.height * 0.2,
                         width: size.width * 0.7,
-                        child: SingleChildScrollView(
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'HEADING\n',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: darkGreen,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text:
-                                      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam quas reiciendis nisi quae assumenda quam ipsam molestiae obcaecati voluptatem, nam consequuntur',
-                                  style: GoogleFonts.inter(color: Colors.black),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
                         decoration: BoxDecoration(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(30.0),
@@ -505,6 +537,76 @@ class _KrishiGyanState extends State<KrishiGyan> {
                               ),
                             ),
                           ],
+                        ),
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Credit facility for farmers\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      'Loan facility is available through a large network of Commercial Banks, Regional Rural Banks and Cooperative Credit Institutions in the country to fulfill the crop loan and term loan needs of the farmers.',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 15),
+                      Container(
+                        padding: const EdgeInsets.all(20.0),
+                        height: size.height * 0.2,
+                        width: size.width * 0.7,
+                        decoration: BoxDecoration(
+                          color: lightGreen,
+                          borderRadius: BorderRadius.circular(30.0),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 1.0, // soften the shadow
+                              spreadRadius: 0.5, //extend the shadow
+                              offset: Offset(
+                                5.0,
+                                5.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        child: SingleChildScrollView(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Crop insurance schemes\n',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: darkGreen,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      '''Four insurance schemes are being implemented namely by the government to support farmers.
+
+                                      Pradhan Mantri Fasal Bima Yojana (PMFBY)
+                                      Weather based Crop Insurance Scheme (WBCIS)
+                                      Coconut Palm insurance scheme (CPIS) and
+                                      Pilot Unified Package insurance scheme UPIS) (45 districts).''',
+                                  style: GoogleFonts.inter(color: Colors.black),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],

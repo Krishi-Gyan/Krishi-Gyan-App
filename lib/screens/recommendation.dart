@@ -5,10 +5,20 @@ import 'package:menu_button/menu_button.dart';
 import '../widgets/ImageCarousel.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-const List<String> keys1 = ['One', 'Two', 'Three', 'Four'];
-const List<String> keys2 = ['One', 'Two', 'Three', 'Four'];
-const List<String> keys3 = ['One', 'Two', 'Three', 'Four'];
-const List<String> keys4 = ['One', 'Two', 'Three', 'Four'];
+const List<String> keys1 = [
+  '10 kg Zinc Sulphate/ac',
+  'SSP 150 kg/ac',
+  'Zn SO4 10 kg/ac',
+  'FYM 25 t/ac'
+];
+const List<String> keys2 = [
+  'Bromadiolone 00.005% RB',
+  'Cypermethrin 10.00% EC',
+  'Fipronil 00.30% GR'
+];
+const List<String> keys3 = ['Drip Irrigation', 'Sprinkler Method'];
+
+const List<String> keys4 = ['Soybeans', 'Sorghum'];
 
 const List<String> items = [
   'Fertilizers',
@@ -72,8 +82,8 @@ class _RecommendationState extends State<Recommendation> {
                         boxShadow: const [
                           BoxShadow(
                             color: Colors.grey,
-                            blurRadius: 1.0, // soften the shadow
-                            spreadRadius: 1.0, //extend the shadow
+                            blurRadius: 1.0,
+                            spreadRadius: 1.0,
                             offset: Offset(
                               5.0,
                               5.0,
@@ -90,13 +100,22 @@ class _RecommendationState extends State<Recommendation> {
                             SizedBox(
                               height: 8.h,
                             ),
-                            Text(
-                              "Current Crop",
-                              style: TextStyle(
-                                color: greenTitle,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Current Crop",
+                                  style: TextStyle(
+                                    color: greenTitle,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.edit,
+                                  color: greenTitle,
+                                )
+                              ],
                             ),
                             SizedBox(
                               height: 2.h,
@@ -110,18 +129,21 @@ class _RecommendationState extends State<Recommendation> {
                                     decoration: BoxDecoration(
                                       borderRadius:
                                           BorderRadius.circular(10.sp),
-                                      color: const Color.fromARGB(
-                                          255, 219, 219, 219),
+                                      image: const DecorationImage(
+                                        image: AssetImage('assets/wheat.jpg'),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                   Positioned(
                                     bottom: 1.h,
                                     left: 2.w,
                                     child: Text(
-                                      "Crop name",
+                                      "Wheat",
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.white,
                                         fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
@@ -138,7 +160,7 @@ class _RecommendationState extends State<Recommendation> {
                                         height: 2.5.h,
                                       ),
                                       Text(
-                                        "Irrigation Methods: ",
+                                        "Irrigation Methods: Sprinkler method",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 16.sp,
@@ -148,7 +170,7 @@ class _RecommendationState extends State<Recommendation> {
                                         height: 1.h,
                                       ),
                                       Text(
-                                        "Fertilizers: ",
+                                        "Fertilizers: Urea 146 kg/ac, MOP 40 kg/ac",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 16.sp,
@@ -158,7 +180,7 @@ class _RecommendationState extends State<Recommendation> {
                                         height: 1.h,
                                       ),
                                       Text(
-                                        "Pesticides: ",
+                                        "Pesticides: Bromadiolone 00.005% RB",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 16.sp,
@@ -233,30 +255,88 @@ class _RecommendationState extends State<Recommendation> {
                   height: 1.h,
                 ),
                 Column(
-                  children: items.map((e) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: MenuButton<String>(
-                        items: keys1,
-                        itemBuilder: (String value) => Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0.0, horizontal: 16.sp),
-                          child: Text(value),
-                        ),
-                        toggledChild: MenuButtonContainer(containername: e),
-                        onItemSelected: (String value) {
-                          setState(() {
-                            e = value;
-                          });
-                        },
-                        child: MenuButtonContainer(containername: e),
+                  children: [
+                    MenuButton<String>(
+                      items: keys1,
+                      itemBuilder: (String value) => Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 0.0, horizontal: 16.sp),
+                        child: Text(value),
                       ),
-                    );
-                  }).toList(),
+                      toggledChild:
+                          MenuButtonContainer(containername: items[0]),
+                      onItemSelected: (String value) {
+                        setState(() {
+                          items[0] = value;
+                        });
+                      },
+                      child: MenuButtonContainer(containername: items[0]),
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    MenuButton<String>(
+                      items: keys2,
+                      itemBuilder: (String value) => Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 0.0, horizontal: 16.sp),
+                        child: Text(value),
+                      ),
+                      toggledChild:
+                          MenuButtonContainer(containername: items[1]),
+                      onItemSelected: (String value) {
+                        setState(() {
+                          items[1] = value;
+                        });
+                      },
+                      child: MenuButtonContainer(containername: items[1]),
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    MenuButton<String>(
+                      items: keys3,
+                      itemBuilder: (String value) => Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 0.0, horizontal: 16.sp),
+                        child: Text(value),
+                      ),
+                      toggledChild:
+                          MenuButtonContainer(containername: items[2]),
+                      onItemSelected: (String value) {
+                        setState(() {
+                          items[2] = value;
+                        });
+                      },
+                      child: MenuButtonContainer(containername: items[2]),
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    MenuButton<String>(
+                      items: keys4,
+                      itemBuilder: (String value) => Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 0.0, horizontal: 16.sp),
+                        child: Text(value),
+                      ),
+                      toggledChild:
+                          MenuButtonContainer(containername: items[3]),
+                      onItemSelected: (String value) {
+                        setState(() {
+                          items[3] = value;
+                        });
+                      },
+                      child: MenuButtonContainer(containername: items[3]),
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  height: 1.h,
+                  height: 2.h,
                 ),
                 SizedBox(
                   height: 130.h,

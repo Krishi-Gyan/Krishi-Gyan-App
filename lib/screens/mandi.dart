@@ -349,7 +349,7 @@ class _SellFormState extends State<SellForm> {
               title: TextFormField(
                 decoration: const InputDecoration(
                   border: InputBorder.none,
-                  labelText: 'Quantity',
+                  labelText: 'Quantity (in kg)',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
